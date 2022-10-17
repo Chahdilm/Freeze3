@@ -46,29 +46,78 @@ install.packages("ontologyIndex")
 
 ## Description
 - **FOLDER :a_script_curation** :
-    Description
-  -   **1_filter_file_phenopacket.py**
-         Description
-  -   **1_filter_file_phenopacket.py**
-         Description
-   -   **1_filter_file_phenopacket.py**
-         Description
-  -   **1_filter_file_phenopacket.py**
-         Description
-  -   **1_filter_file_phenopacket.py**
-         Description
-  -   **1_filter_file_phenopacket.py**
-         Description
-   -   **1_filter_file_phenopacket.py**
-         Description
-  -   **1_filter_file_phenopacket.py**
-         Description
+- Description
+  -   **1_filter_file_phenopacket.py** : 
+  -   Description
+  
+  -   **2_curation.py** : 
+  -    Description
+ 
+  -   **3_transform_phenopackets_cleaned_for_RunSolveRD.py** : 
+  -   Description
+  
+  -   **4_RUN_runSolvedRD.py** : 
+  -    Description
+
+  -   **curation_excluding_redundant_terms_with_ontologyIndex.R** : 
+  -   Description
+
+- **FOLDER :b_script_get_gene** :
+- Description : pas de chiffre devant car pas d'ordre need ici
+  -   **get_gene_from_case.py** : 
+  -   Description
+  
+  -   **get_gene_from_orpha.py** : 
+  -    Description
+  
+- **FOLDER :c_script_step** :
+- Description : pas de chiffre devant car pas d'ordre need ici
+  -   **1_stepA1_A2.py** : 
+  -   Description
+  
+  -   **2_stepB1.py** : 
+  -    Description
+ 
+  -   **3_stepB2.py** : 
+  -   Description
+  
+  -   **4_stepC1.py** : 
+  -    Description
+
+  -   **5_stepC2.R** : 
+  -   Description
+
+- **FOLDER :d_script_minitsv** :
+- Description : pas de chiffre devant car pas d'ordre need ici
+  -   **build_minidf.py** : 
+  -   Description
+
+- **FOLDER :e_script_cytoscape** :
+- Description : pas de chiffre devant car pas d'ordre need ici
+  -   **1_cytoscape_all.py** : 
+  -   Description
+ 
+  -   **2_wikipathway_all_py4cy.py** : 
+  -   Description
+    
+  -   **3_get_ALL_nodetype.py** : 
+  -   Description
+ 
+ - **FOLDER :e_script_cytoscape** :
+  - Description : pas de chiffre devant car pas d'ordre need ici
+  -   **buildjson_all.py** : 
+  -   Description
+ 
+  - **FOLDER :g_script_homepageJS** :
+  - Description : pas de chiffre devant car pas d'ordre need ici
+  -   **homepage.py** : 
+  -   Description
 
 
 - Remarque:
-    - Pour éviter un fichier avec un nombre trop important de ligne les fichiers ont été décomposés d'où l'extention "fichier**.pcpp**"
-    - Il y a **6** fichiers de type .pcpp **Fenetre** et **2** **Vampire**
-    - Il n'est pas necessaire de les rajouter dans la Makefile comme on est sur **cpp11** la gestion de ces fichiers est automatiquement gérés par le langage.
+    - blabla
+    - blabla
+    - blabla
 
 
 mettre paragraphe runsolvedRD
