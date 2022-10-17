@@ -46,29 +46,39 @@ install.packages("ontologyIndex")
 
 ## Description
 - **FOLDER :a_script_curation** :
-- Description
+- From brut  phenopacket to filtered no parent with curation phenopacket 
+- Output : curation_input folder
   -   **1_filter_file_phenopacket.py** : 
-  -   Description
+  -   Description : 
+  -   Filter phenopacket remove parent all parent stored in output *output_5HPO\curation_input\parent_phenopacket.tsv*
+  -   Filter phenopacket keep only phenopacket 5HPO stored in output folder *output_5HPO\curation_input\Freezes1_2_3_noduplicates_noparents_with_5phenotypes_complete\*
   
   -   **2_curation.py** : 
-  -    Description
+  -    Description :
+  -    Lauch R script *curation_excluding_redundant_terms_with_ontologyIndex.R* to execute **ontologyIndex** on phenopacket output stored in folder :  *output_5HPO\curation_input\Freezes1_2_3_noduplicates_noparents_with_5phenotypes_aftercuration_complete\*
  
   -   **3_transform_phenopackets_cleaned_for_RunSolveRD.py** : 
-  -   Description
+  -   Description :
+  -   Set json structure for RunSolveRD algo
+  -   Rename phenopacket file output stored in folder  *output_5HPO\curation_input\Freezes1_2_3_noduplicates_noparents_with_5phenotypes_aftercuration_complete\*
   
   -   **4_RUN_runSolvedRD.py** : 
-  -    Description
+  -    Bash command run algo **RunSolveRD** output stored in folder *output_5HPO\curation_input\Freezes1_2_3_noduplicates_noparents_with_5phenotypes_aftercuration_complete\results*
 
   -   **curation_excluding_redundant_terms_with_ontologyIndex.R** : 
-  -   Description
+  -   R file run in script 2_curation.py 
+  -   /!\ need to change path variable.
+
+- Phenopackets used for la suite is on folder *Freezes1_2_3_noduplicates_noparents_with_5phenotypes_aftercuration_complete* 
 
 - **FOLDER :b_script_get_gene** :
 - Description : pas de chiffre devant car pas d'ordre need ici
   -   **get_gene_from_case.py** : 
-  -   Description
+  -   Get genes from phenopackets output save in folder *output_5HPO\gene_info\gene_from_json_case.tsv*
+  -   Get genes from phenopackets solved only GPAP output save in folder *output_5HPO\gene_info\gene_from_solved_case.tsv*
   
   -   **get_gene_from_orpha.py** : 
-  -    Description
+  -   Get genes 
   
 - **FOLDER :c_script_step** :
 - Description : pas de chiffre devant car pas d'ordre need ici
@@ -119,6 +129,14 @@ install.packages("ontologyIndex")
     - blabla
     - blabla
 
+section R modifier path on the R script [name]
+```
+folder = "C:\\Users\\mchahdil\\Documents\\Freeze3\\\\output_5HPO\\\\curation_input\\"
+setwd(folder)
+
+input_json = "Freezes1_2_3_noduplicates_noparents_with_5phenotypes_complete\\"
+output_json = "Freezes1_2_3_noduplicates_noparents_with_5phenotypes_aftercuration_complete\\"
+```
 
 mettre paragraphe runsolvedRD
   expliquer les output generer 
