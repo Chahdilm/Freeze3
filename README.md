@@ -78,7 +78,7 @@ install.packages("ontologyIndex")
   -   Get genes from phenopackets solved only GPAP output save in folder *output_5HPO\gene_info\gene_from_solved_case.tsv*
   
   -   **get_gene_from_orpha.py** : 
-  -   Get genes 
+  -   Get genes from orphanet website based on folder *input\RunSolveRD* *en_product1_sep2022.xml* file and *en_product6_sep2022.xml* file and *input\product_ORPHApackets_childs.xml* file output stored in *output_5HPO\gene_info\pd_1_6_child.tsv*
   
 - **FOLDER :c_script_step** :
 - Description : pas de chiffre devant car pas d'ordre need ici
