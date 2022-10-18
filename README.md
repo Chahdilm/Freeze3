@@ -130,14 +130,15 @@ expliquer phenopacket et cases
   -   For each ORPHAcode information of their nomemclature (disorder or subtype)
   -   input are product6 (*input\RunSolveRD\en_product6_sep2022.xml*), phenopacket description to get the statue and the ERN file (*input\2022_10_14_cohort_ERN.csv*)
 
- - **FOLDER :g_script_homepageJS** :
-Build the homepage for the application on javascript (done with the librairy cytoscape JS)
-  -   **homepage.py** : 
-  -   Check the similarity between a case related to another case for all phenopackets.
-  -   Build the dataframe then the cytoscape dataframe and the json file for cytoscape js.
-
- f_script_json
- buildjson_all.py
+- **FOLDER :f_script_json** :
+Build a json file for each dataframe output from **2_wikipathway_all_py4cy.py** to use them on the application done with cytoscape JS.
+-   **buildjson_all.py** : 
+  -   Input are output of **2_wikipathway_all_py4cy.py** all dataframe.
+  -   For each elements(cases,genes,orphacodes,pathways) a node is build.
+  -   For each interactions orphacode/case or case/case or orphacode/gene or case/gene or orphacode/orphacode an edge is build
+  -   Output are stored on the folder *output_5HPO\json*
+ 
+ 
 - **FOLDER :g_script_homepageJS** :
 Build the homepage for the application on javascript (done with the librairy cytoscape JS)
   -   **homepage.py** : 
