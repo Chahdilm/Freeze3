@@ -47,7 +47,7 @@ install.packages("ontologyIndex")
 expliquer phenopacket et cases 
 
 ## Description
-- **FOLDER :a_script_curation** :
+#### **FOLDER :a_script_curation** :
 - From brut  phenopacket to filtered no parent with curation phenopacket 
 - Output : curation_input folder
   -   **1_filter_file_phenopacket.py** : 
