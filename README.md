@@ -48,22 +48,19 @@ expliquer phenopacket et cases
 
 ## Description
 #### **FOLDER :a_script_curation** :
-- From brut  phenopacket to filtered no parent with curation phenopacket 
-- Output : curation_input folder
+From brut  phenopacket to filtered no parent with curation phenopacket 
+Output : curation_input folder
   -   **1_filter_file_phenopacket.py** : 
-  -   Description : 
   -   Filter phenopacket remove parent all parent stored in output *output_5HPO\curation_input\parent_phenopacket.tsv*
   -   Filter phenopacket keep only phenopacket 5HPO stored in output folder *output_5HPO\curation_input\Freezes1_2_3_noduplicates_noparents_with_5phenotypes_complete\*
   
   -   **2_curation.py** : 
-  -    Description :
   -    Lauch R script *curation_excluding_redundant_terms_with_ontologyIndex.R* to execute **ontologyIndex** on phenopacket output stored in folder :  *output_5HPO\curation_input\Freezes1_2_3_noduplicates_noparents_with_5phenotypes_aftercuration_complete\*
  
   -   **3_transform_phenopackets_cleaned_for_RunSolveRD.py** : 
-  -   Description :
-  -   Set json structure for RunSolveRD algo
-  -   Rename phenopacket file output stored in folder  *output_5HPO\curation_input\Freezes1_2_3_noduplicates_noparents_with_5phenotypes_aftercuration_complete\*
-  
+    -   Set json structure for RunSolveRD algo
+    -   Rename phenopacket file output stored in folder  *output_5HPO\curation_input\Freezes1_2_3_noduplicates_noparents_with_5phenotypes_aftercuration_complete\*
+
   -   **4_RUN_runSolvedRD.py** : 
   -    Bash command run algo **RunSolveRD** output stored in folder *output_5HPO\curation_input\Freezes1_2_3_noduplicates_noparents_with_5phenotypes_aftercuration_complete\results*
 
