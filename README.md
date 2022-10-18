@@ -58,8 +58,8 @@ Output : curation_input folder
   -    Lauch R script *curation_excluding_redundant_terms_with_ontologyIndex.R* to execute **ontologyIndex** on phenopacket output stored in folder :  *output_5HPO\curation_input\Freezes1_2_3_noduplicates_noparents_with_5phenotypes_aftercuration_complete\*
  
   -   **3_transform_phenopackets_cleaned_for_RunSolveRD.py** : 
-    -   Set json structure for RunSolveRD algo
-    -   Rename phenopacket file output stored in folder  *output_5HPO\curation_input\Freezes1_2_3_noduplicates_noparents_with_5phenotypes_aftercuration_complete\*
+  -   Set json structure for RunSolveRD algo
+  -   Rename phenopacket file output stored in folder  *output_5HPO\curation_input\Freezes1_2_3_noduplicates_noparents_with_5phenotypes_aftercuration_complete\*
 
   -   **4_RUN_runSolvedRD.py** : 
   -    Bash command run algo **RunSolveRD** output stored in folder *output_5HPO\curation_input\Freezes1_2_3_noduplicates_noparents_with_5phenotypes_aftercuration_complete\results*
