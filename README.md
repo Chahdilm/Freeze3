@@ -3,8 +3,12 @@ Maroua CHAHDIL
 
 
 # que fait ce projet 
+
 ## SolveRD projet
-[...] **WIP**
+Solve rd project aim to helped through diagnostics hypothesis on unsolved patients with rare disease done by clinicians who belong to ERNs. WP1 contains unsolved and solved-rd cases data in a standardised way, unsolved one are related to the RD ontology RDCO. Orphanet develop a three steps workflow featuring with CNAG. Data visualisation of cases based on the three steps is settle thanks to biological network through cytoscape js library. This aims to code an interactive js platform. Explorations, analysis and filtration of genes, cases and Orphacodes drive to diagnostic hypothesis. Several options for filtration, analysis, exploration or exportation are available on the platform like edges score filtration, ERN section, build a sub-graph, json export and so on Here, we specifically present jamborees cases network based on step C1. Cytoscape js lead to easily explore data and it can be link to other databases like GO, WikiPathways and so on.  
+![image](https://user-images.githubusercontent.com/107696182/196685232-da45d68a-03ce-4d6a-9cca-fa55616f7b2a.png)
+
+
 
 # Version : 
 
@@ -173,11 +177,8 @@ Build the homepage for the application on javascript (done with the librairy cyt
       -   Build the dataframe then the cytoscape dataframe and the json file for cytoscape js.
 
 
-- Remarque:
-    - blabla
-    - blabla
-    - blabla
- 
+## **runsolvedRD** :
+## **Pipeline** :
 
 mettre paragraphe runsolvedRD
   expliquer les output generer 
@@ -186,8 +187,8 @@ expliquer le déroulement de ce code
 paragraphe input 
 
 mettre paragraphe sur le temps de chaque script 
-
-docker paragraphe 
+## **Docker** :
+[...] **WIP**
 
 
 
