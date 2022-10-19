@@ -17,8 +17,7 @@ Maroua CHAHDIL
 
 # Package needed  :
 ## Python
-- **Pandas** : 
-  - install librairie on python console : use conda or pip or pip3
+  Install librairie on python console : use conda or pip or pip3
 ```
 pandas 
 os 
@@ -32,8 +31,8 @@ numpy
 py4cytoscape
 sys
 ```
-- **R**   :
-    - install librairie on R console :
+## R
+   Install librairie on R console :
 ```
 install.packages("tidyverse")
 install.packages("rlist")
