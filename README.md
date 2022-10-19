@@ -45,7 +45,7 @@ install.packages("jsonlite")
 install.packages("writexl")
 install.packages("ontologyIndex")
 ```
-## /!\ Code to change  /!\
+# /!\ Code to change  /!\
   -   R script *curation_excluding_redundant_terms_with_ontologyIndex.R*
       -   Change the variable path : **folder**
   -   Python script *path_variable.py*
@@ -55,14 +55,14 @@ install.packages("ontologyIndex")
             -   PATH_R indicate where R is stored on the computer. Need to change it depending on R localisation and OS.
  
 
-## Remarque:
+# Remarque:
 
   -   Phenopacket are json files which describe hpo for one patient
   -   Cases is a phenopacket synonyme. Case is use to describe patients on the algorithme runsolveRD,went case-case similarity algorithme is lauch. Case describes also           unsolved or solved patient.
 
 
 
-## Description
+# Description
 ### **FOLDER :a_script_curation** :
 From brut phenopacket to filtered one without parent and with curation phenopacket 
 Output : *output_5HPO\curation_input* folder
