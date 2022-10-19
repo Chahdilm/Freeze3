@@ -131,7 +131,7 @@ Output : *output_5HPO\curation_input* folder.
       -   Run the R file trhought python script : *2_curation.py*. 
       -   /!\ need to change the folder path variable.
 
-## Phenopackets used for next steps are in the folder : *Freezes1_2_3_noduplicates_noparents_with_5phenotypes_aftercuration_complete* 
+#### Phenopackets used for next steps are in the folder : *Freezes1_2_3_noduplicates_noparents_with_5phenotypes_aftercuration_complete* 
 
 ## **FOLDER - b_script_get_gene** :
 No execution order-   **get_gene_from_case.py** : 
