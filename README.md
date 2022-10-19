@@ -5,17 +5,20 @@ Maroua CHAHDIL
 [...] **WIP**
 
 
-# Install : 
-- Réalisation du projet **sous Mac OS** Catalina Version 10.15.7 (19H15)
+# Version : 
+
+- Project made on Window 10 21H2
+- Compatible with Mac OS Catalina Version 10.15.7 (19H15)  <- a voir encore 
 
   - R 4.2.1
-use R Language for IntelliJ on pycharm (223.6646—223.6646.*)
+      - R Language for IntelliJ on pycharm (223.6646—223.6646.*)
+
   - Python 3.9
 
 # Package needed  :
 ## Python
 - **Pandas** : 
-  - install librairie on python console : use conda or pip
+  - install librairie on python console : use conda or pip or pip3
 ```
 pandas 
 os 
@@ -62,17 +65,17 @@ install.packages("ontologyIndex")
 
 ## Description
 #### **FOLDER :a_script_curation** :
-From brut  phenopacket to filtered no parent with curation phenopacket 
-Output : curation_input folder
+From brut phenopacket to filtered one without parent and with curation phenopacket 
+Output : *output_5HPO\curation_input* folder
   -   **1_filter_file_phenopacket.py** : 
-      -   Filter phenopacket remove parent all parent stored in output *output_5HPO\curation_input\parent_phenopacket.tsv*
-      -   Filter phenopacket keep only phenopacket 5HPO stored in output folder *output_5HPO\curation_input\Freezes1_2_3_noduplicates_noparents_with_5phenotypes_complete\*
+      -   Filter phenopacket remove parent. All parent are stored in output file *output_5HPO\curation_input\parent_phenopacket.tsv*
+      -   Filter phenopacket keep only phenopacket 5HPO without parents, stored in output folder *output_5HPO\curation_input\Freezes1_2_3_noduplicates_noparents_with_5phenotypes_complete\*
 
   -   **2_curation.py** : 
-      -    Lauch R script *curation_excluding_redundant_terms_with_ontologyIndex.R* to execute **ontologyIndex** on phenopacket output stored in folder :  *output_5HPO\curation_input\Freezes1_2_3_noduplicates_noparents_with_5phenotypes_aftercuration_complete\*
+      -    Lauch R script *curation_excluding_redundant_terms_with_ontologyIndex.R* to execute the **ontologyIndex** R librairy to make curations on phenopackets outputs stored in folder :  *output_5HPO\curation_input\Freezes1_2_3_noduplicates_noparents_with_5phenotypes_aftercuration_complete\*
  
   -   **3_transform_phenopackets_cleaned_for_RunSolveRD.py** : 
-      -   Set json structure for RunSolveRD algo
+      -   Set json structure compatible with the RunSolveRD algo
       -   Rename phenopacket file output stored in folder  *output_5HPO\curation_input\Freezes1_2_3_noduplicates_noparents_with_5phenotypes_aftercuration_complete\*
 
   -   **4_RUN_runSolvedRD.py** : 
@@ -85,7 +88,7 @@ Output : curation_input folder
 - Phenopackets used for la suite is on folder *Freezes1_2_3_noduplicates_noparents_with_5phenotypes_aftercuration_complete* 
 
 - **FOLDER :b_script_get_gene** :
-- Description : pas de chiffre devant car pas d'ordre need ici
+- pas de chiffre devant car pas d'ordre need ici
   -   **get_gene_from_case.py** : 
   -   Get genes from phenopackets output save in folder *output_5HPO\gene_info\gene_from_json_case.tsv*
   -   Get genes from phenopackets solved only GPAP output save in folder *output_5HPO\gene_info\gene_from_solved_case.tsv*
