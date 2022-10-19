@@ -63,7 +63,7 @@ install.packages("ontologyIndex")
 
 
 # Description
-### **FOLDER :a_script_curation** :
+## **FOLDER :a_script_curation** :
 From brut phenopacket to filtered one without parent and with curation phenopacket 
 Output : *output_5HPO\curation_input* folder
   -   **1_filter_file_phenopacket.py** : 
@@ -86,7 +86,7 @@ Output : *output_5HPO\curation_input* folder
 
 - Phenopackets used for la suite is on folder *Freezes1_2_3_noduplicates_noparents_with_5phenotypes_aftercuration_complete* 
 
-### **FOLDER :b_script_get_gene** :
+## **FOLDER :b_script_get_gene** :
 - pas de chiffre devant car pas d'ordre need ici
   -   **get_gene_from_case.py** : 
   -   Get genes from phenopackets output save in folder *output_5HPO\gene_info\gene_from_json_case.tsv*
@@ -95,7 +95,7 @@ Output : *output_5HPO\curation_input* folder
   -   **get_gene_from_orpha.py** : 
   -   Get genes from orphanet website based on folder *input\RunSolveRD* *en_product1_sep2022.xml* file and *en_product6_sep2022.xml* file and *input\product_ORPHApackets_childs.xml* file output stored in *output_5HPO\gene_info\pd_1_6_child.tsv*
   
-### **FOLDER :c_script_step** :
+## **FOLDER :c_script_step** :
 - Description : exe depend on number order
   -   **1_stepA1_A2.py** : 
   -   input phenopacket result from RunSolveRD algo folder : *output_5HPO\curation_input\Freezes1_2_3_noduplicates_noparents_with_5phenotypes_aftercuration_complete\results\results_noduplicates\resultsORDO*
@@ -121,12 +121,12 @@ Output : *output_5HPO\curation_input* folder
   -   Working out the unsolved cases similar to the case from the similar RD related to the solved case *output_5HPO\stepC2.tsv*
   
 
-### **FOLDER :d_script_minitsv** :
+## **FOLDER :d_script_minitsv** :
 - Create sub_tsv for each phenopacket on each steps
   -   **build_minidf.py** : 
   -   input all tsv steps from the step folder stored in *output_5HPO\* 
 
-### **FOLDER :e_script_cytoscape** :
+## **FOLDER :e_script_cytoscape** :
 - Description : exe depend on number order
   -   **1_cytoscape_all.py** : 
   -   input are output from *build_minidf.py*
@@ -143,7 +143,7 @@ Output : *output_5HPO\curation_input* folder
   -   For each ORPHAcode information of their nomemclature (disorder or subtype)
   -   input are product6 (*input\RunSolveRD\en_product6_sep2022.xml*), phenopacket description to get the statue and the ERN file (*input\2022_10_14_cohort_ERN.csv*)
 
-### **FOLDER :f_script_json** :
+## **FOLDER :f_script_json** :
 Build a json file for each dataframe output from **2_wikipathway_all_py4cy.py** to use them on the application done with cytoscape JS.
 -   **buildjson_all.py** : 
   -   Input are output of **2_wikipathway_all_py4cy.py** all dataframe.
@@ -152,7 +152,7 @@ Build a json file for each dataframe output from **2_wikipathway_all_py4cy.py** 
   -   Output are stored on the folder *output_5HPO\json*
  
  
-### **FOLDER :g_script_homepageJS** :
+## **FOLDER :g_script_homepageJS** :
 Build the homepage for the application on javascript (done with the librairy cytoscape JS)
   -   **homepage.py** : 
   -   Check the similarity between a case related to another case for all phenopackets.
