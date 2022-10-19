@@ -43,8 +43,22 @@ install.packages("jsonlite")
 install.packages("writexl")
 install.packages("ontologyIndex")
 ```
+## /!\ Code to change  /!\
+  -   R script *curation_excluding_redundant_terms_with_ontologyIndex.R*
+      -   Change the variable path : **folder**
+  -   Python script *path_variable.py*
+      -   Change the path of the variable **PATH** Exemple : PATH= r"C:\Users\mchahdil\Documents\Freeze3\\"
+            -   PATH describe the localisation of the main file named Freeze3. All  variable which store path depend on  the PATH.
+      -   Change the path of the variable **PATH_R** Exemple : PATH_R = r'C:\Program Files\R\R-4.2.1\bin\Rscript'
+            -   PATH_R indicate where R is stored on the computer. Need to change it depending on R localisation and OS.
+ 
+
 ## Remarque:
-expliquer phenopacket et cases 
+
+  -   Phenopacket are json files which describe hpo for one patient
+  -   Cases is a phenopacket synonyme. Case is use to describe patients on the algorithme runsolveRD,went case-case similarity algorithme is lauch. Case describes also           unsolved or solved patient.
+
+
 
 ## Description
 #### **FOLDER :a_script_curation** :
