@@ -87,76 +87,76 @@ Output : *output_5HPO\curation_input* folder
 - Phenopackets used for la suite is on folder *Freezes1_2_3_noduplicates_noparents_with_5phenotypes_aftercuration_complete* 
 
 ## **FOLDER :b_script_get_gene** :
-- pas de chiffre devant car pas d'ordre need ici
+pas de chiffre devant car pas d'ordre need ici
   -   **get_gene_from_case.py** : 
-  -   Get genes from phenopackets output save in folder *output_5HPO\gene_info\gene_from_json_case.tsv*
-  -   Get genes from phenopackets solved only GPAP output save in folder *output_5HPO\gene_info\gene_from_solved_case.tsv*
+      -   Get genes from phenopackets output save in folder *output_5HPO\gene_info\gene_from_json_case.tsv*
+      -   Get genes from phenopackets solved only GPAP output save in folder *output_5HPO\gene_info\gene_from_solved_case.tsv*
   
   -   **get_gene_from_orpha.py** : 
-  -   Get genes from orphanet website based on folder *input\RunSolveRD* *en_product1_sep2022.xml* file and *en_product6_sep2022.xml* file and *input\product_ORPHApackets_childs.xml* file output stored in *output_5HPO\gene_info\pd_1_6_child.tsv*
+      -   Get genes from orphanet website based on folder *input\RunSolveRD* *en_product1_sep2022.xml* file and *en_product6_sep2022.xml* file and *input\product_ORPHApackets_childs.xml* file output stored in *output_5HPO\gene_info\pd_1_6_child.tsv*
   
 ## **FOLDER :c_script_step** :
-- Description : exe depend on number order
+Exe depend on number order
   -   **1_stepA1_A2.py** : 
-  -   input phenopacket result from RunSolveRD algo folder : *output_5HPO\curation_input\Freezes1_2_3_noduplicates_noparents_with_5phenotypes_aftercuration_complete\results\results_noduplicates\resultsORDO*
-  -   Check the similarity between a case related to rare diseases with the same gene output stored in folder *output_5HPO\stepA1.tsv* 
-  -   Check the similarity between a case related to rare diseases with different genes output stored in folder *output_5HPO\stepA2.tsv*
+      -   input phenopacket result from RunSolveRD algo folder : *output_5HPO\curation_input\Freezes1_2_3_noduplicates_noparents_with_5phenotypes_aftercuration_complete\results\results_noduplicates\resultsORDO*
+      -   Check the similarity between a case related to rare diseases with the same gene output stored in folder *output_5HPO\stepA1.tsv* 
+      -   Check the similarity between a case related to rare diseases with different genes output stored in folder *output_5HPO\stepA2.tsv*
   
   -   **2_stepB1.py** : 
-  -   input phenopacket result from RunSolveRD algo folder : *output_5HPO\curation_input\Freezes1_2_3_noduplicates_noparents_with_5phenotypes_aftercuration_complete\results\results_noduplicates\resultsPhenopackets* 
-  -   Find the corresponding between cases output stored in folder *output_5HPO\stepB1.tsv*
+      -   input phenopacket result from RunSolveRD algo folder : *output_5HPO\curation_input\Freezes1_2_3_noduplicates_noparents_with_5phenotypes_aftercuration_complete\results\results_noduplicates\resultsPhenopackets* 
+      -   Find the corresponding between cases output stored in folder *output_5HPO\stepB1.tsv*
   
   -   **3_stepB2.py** : 
-  -   input phenopacket result from RunSolveRD algo folder : *output_5HPO\curation_input\Freezes1_2_3_noduplicates_noparents_with_5phenotypes_aftercuration_complete\results\results_noduplicates\resultsORDO* and output B1 cases
-  -   Finding the unsolved cases similar to the solved case in folder *output_5HPO\stepB2.tsv*
+      -   input phenopacket result from RunSolveRD algo folder : *output_5HPO\curation_input\Freezes1_2_3_noduplicates_noparents_with_5phenotypes_aftercuration_complete\results\results_noduplicates\resultsORDO* and output B1 cases
+      -   Finding the unsolved cases similar to the solved case in folder *output_5HPO\stepB2.tsv*
   
   
   -   **4_stepC1.py** : 
-  -   input phenopacket result from RunSolveRD algo folder : [...] en cours
-  -   Working out the unsolved cases similar to the RD related to the solved case *output_5HPO\stepC1.tsv*
+      -   input phenopacket result from RunSolveRD algo folder : [...] en cours
+      -   Working out the unsolved cases similar to the RD related to the solved case *output_5HPO\stepC1.tsv*
   
 
   -   **5_stepC2.R** : 
-  -   input phenopacket result from RunSolveRD algo folder : [...] en cours
-  -   Working out the unsolved cases similar to the case from the similar RD related to the solved case *output_5HPO\stepC2.tsv*
+      -   input phenopacket result from RunSolveRD algo folder : [...] en cours
+      -   Working out the unsolved cases similar to the case from the similar RD related to the solved case *output_5HPO\stepC2.tsv*
   
 
 ## **FOLDER :d_script_minitsv** :
-- Create sub_tsv for each phenopacket on each steps
+Create sub_tsv for each phenopacket on each steps
   -   **build_minidf.py** : 
-  -   input all tsv steps from the step folder stored in *output_5HPO\* 
+      -   input all tsv steps from the step folder stored in *output_5HPO\* 
 
 ## **FOLDER :e_script_cytoscape** :
-- Description : exe depend on number order
+Exe depend on number order
   -   **1_cytoscape_all.py** : 
-  -   input are output from *build_minidf.py*
-  -   Convert a dataframe into a dataframe compatible with Cytoscape output store on the folder *output_5HPO\cytoscape*
+      -   input are output from *build_minidf.py*
+      -   Convert a dataframe into a dataframe compatible with Cytoscape output store on the folder *output_5HPO\cytoscape*
  
   -   **2_wikipathway_all_py4cy.py** : 
-  -   input are cytoscape dataframes 
-  -   use a tools CyTargetLinker from Wikipathway database to create add cytoscape information on the network,output store on the folder *output_5HPO\cytoscape_wikipathways*
-  -   It s done on python thanks to py4cytoscape librairy. 
+      -   input are cytoscape dataframes 
+      -   use a tools CyTargetLinker from Wikipathway database to create add cytoscape information on the network,output store on the folder *output_5HPO\cytoscape_wikipathways*
+      -   It s done on python thanks to py4cytoscape librairy. 
     
   -   **3_get_ALL_nodetype.py** : 
-  -   For each phenopacket information of their statue SOLVE or UNSOLVED
-  -   For each phenopacket information of their their ERN origin 
-  -   For each ORPHAcode information of their nomemclature (disorder or subtype)
-  -   input are product6 (*input\RunSolveRD\en_product6_sep2022.xml*), phenopacket description to get the statue and the ERN file (*input\2022_10_14_cohort_ERN.csv*)
+      -   For each phenopacket information of their statue SOLVE or UNSOLVED
+      -   For each phenopacket information of their their ERN origin 
+      -   For each ORPHAcode information of their nomemclature (disorder or subtype)
+      -   input are product6 (*input\RunSolveRD\en_product6_sep2022.xml*), phenopacket description to get the statue and the ERN file (*input\2022_10_14_cohort_ERN.csv*)
 
 ## **FOLDER :f_script_json** :
 Build a json file for each dataframe output from **2_wikipathway_all_py4cy.py** to use them on the application done with cytoscape JS.
--   **buildjson_all.py** : 
-  -   Input are output of **2_wikipathway_all_py4cy.py** all dataframe.
-  -   For each elements(cases,genes,orphacodes,pathways) a node is build.
-  -   For each interactions orphacode/case or case/case or orphacode/gene or case/gene or orphacode/orphacode an edge is build
-  -   Output are stored on the folder *output_5HPO\json*
+  -   **buildjson_all.py** : 
+      -   Input are output of **2_wikipathway_all_py4cy.py** all dataframe.
+      -   For each elements(cases,genes,orphacodes,pathways) a node is build.
+      -   For each interactions orphacode/case or case/case or orphacode/gene or case/gene or orphacode/orphacode an edge is build
+      -   Output are stored on the folder *output_5HPO\json*
  
  
 ## **FOLDER :g_script_homepageJS** :
 Build the homepage for the application on javascript (done with the librairy cytoscape JS)
   -   **homepage.py** : 
-  -   Check the similarity between a case related to another case for all phenopackets.
-  -   Build the dataframe then the cytoscape dataframe and the json file for cytoscape js.
+      -   Check the similarity between a case related to another case for all phenopackets.
+      -   Build the dataframe then the cytoscape dataframe and the json file for cytoscape js.
 
 
 - Remarque:
