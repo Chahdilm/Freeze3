@@ -2,11 +2,18 @@
 Maroua CHAHDIL  
 
 
-# que fait ce projet 
+# Description
+
+The service is coded in order to viasualise phenotypic similatiry network throught biological network.Its offer to users like clinician who belong to ERNs an interactive and user-friendly experience and can drive to diagnostic hypothesis. It's related to Solve rd project.
+This is a portal for phenotipic similarity analysis,it will be deploy for clinicians  and guide to diagnostics hypothesis.
+
+The data are generate thanks to python, the visualisation is done thanks to JS throught cytoscape JS.
+Data file formats are : tsv,json,xlsx,txt and so on.
+
 
 ## SolveRD projet
 Solve rd project aim to helped through diagnostics hypothesis on unsolved patients with rare disease done by clinicians who belong to ERNs. WP1 contains unsolved and solved-rd cases data in a standardised way, unsolved one are related to the RD ontology RDCO. Orphanet develop a three steps workflow featuring with CNAG. Data visualisation of cases based on the three steps is settle thanks to biological network through cytoscape js library. This aims to code an interactive js platform. Explorations, analysis and filtration of genes, cases and Orphacodes drive to diagnostic hypothesis. Several options for filtration, analysis, exploration or exportation are available on the platform like edges score filtration, ERN section, build a sub-graph, json export and so on Here, we specifically present jamborees cases network based on step C1. Cytoscape js lead to easily explore data and it can be link to other databases like GO, WikiPathways and so on.  
-![image](https://user-images.githubusercontent.com/107696182/196685232-da45d68a-03ce-4d6a-9cca-fa55616f7b2a.png)
+
 
 
 
@@ -72,6 +79,22 @@ PATH= r"C:\Users\mchahdil\Documents\Freeze3\\"
 PATH= r"C:\Users\mchahdil\Documents\Freeze3\\"
 ```
  
+# Prise en main :
+  -   Extract the project on docker [ mettre la commande ]
+  -   Download the zip folder 
+  -   The folder is named Freeze3 it containt input (all input files needed for the process) ,protocole curation (documentation) and script (contain the pyhton code) folder
+  -   Go to the file named *a_script_curation/curation_excluding_redundant_terms_with_ontologyIndex.R* and change the path on the variable folder 
+  -   Go to the file named *path_variable.py* and change the variable PATH put the actual path where the folder Freeze3 is
+  -   Go to script folder and lauche the main.py file 
+  -   main.py execute all script on the right order 
+      - a) Filter and extract phenopackets of interest, execute on R the curation thanks to ontologyIndex and lauch the RunsolveRD  (phenotipic similarity score algorithm)
+      - b) Set all genes 
+      - c) lauch all steps
+      - d) build for each phenopacket of each steps its sub-dataframe
+      - e) Generate dataframes of each phenopacket of each steps compatible with cytoscape. Then add wikipathway information
+      - f) From dataframe cytoscape build a json file compatible with cytoscape JS for the service 
+      - g) Folder which set the home page of the service from scratch.
+
 
 # Remarque:
 
@@ -178,15 +201,9 @@ Build the homepage for the application on javascript (done with the librairy cyt
 
 
 ## **runsolvedRD** :
-## **Pipeline** :
+Phenotypic similarity is done using Resnik symmetric alorithm on RunsolveRD.Similarity depend on phenotypic annotations thanks to Human phenotype onthology (HPO). Similarity betweend cases and/or betwend cases and ORPHAcodes is done.The top 50 first ranked results are selected and store on the json resuls.
 
-mettre paragraphe runsolvedRD
-  expliquer les output generer 
 
-expliquer le déroulement de ce code
-paragraphe input 
-
-mettre paragraphe sur le temps de chaque script 
 ## **Docker** :
 [...] **WIP**
 
