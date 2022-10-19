@@ -87,7 +87,7 @@ output_json = "Freezes1_2_3_noduplicates_noparents_with_5phenotypes_aftercuratio
  
  
 # Getting started :
-  -   Extract the project on docker [ mettre la commande ]  **WIP**
+  -   Extract the project on docker [command ]  **WIP**
   -   Download the zip folder.
   -   The folder is called Freeze3 and contains the folders input (all the input files needed for the process), protocol curation (documentation) and script (containing the pyhton code).
   -   Go to the file named *a_script_curation/curation_excluding_redundant_terms_with_ontologyIndex.R* and change the path.
