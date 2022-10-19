@@ -1,9 +1,10 @@
 ### Auteur
 Maroua CHAHDIL  
 
-# Goal
-[...] **WIP**
 
+# que fait ce projet 
+## SolveRD projet
+[...] **WIP**
 
 # Version : 
 
@@ -48,11 +49,24 @@ install.packages("ontologyIndex")
 # /!\ Code to change  /!\
   -   R script *curation_excluding_redundant_terms_with_ontologyIndex.R*
       -   Change the variable path : **folder**
+```
+folder = "C:\\Users\\mchahdil\\Documents\\Freeze3\\\\output_5HPO\\\\curation_input\\"
+setwd(folder)
+
+input_json = "Freezes1_2_3_noduplicates_noparents_with_5phenotypes_complete\\"
+output_json = "Freezes1_2_3_noduplicates_noparents_with_5phenotypes_aftercuration_complete\\"
+```
   -   Python script *path_variable.py*
-      -   Change the path of the variable **PATH** Exemple : PATH= r"C:\Users\mchahdil\Documents\Freeze3\\"
+      -   Change the path of the variable **PATH** Exmemple :
+```
+PATH= r"C:\Users\mchahdil\Documents\Freeze3\\"
+```
             -   PATH describe the localisation of the main file named Freeze3. All  variable which store path depend on  the PATH.
-      -   Change the path of the variable **PATH_R** Exemple : PATH_R = r'C:\Program Files\R\R-4.2.1\bin\Rscript'
+      -   Change the path of the variable **PATH_R** Exemple : PATH_R = r'C:\Program Files\R\R-4.2.1\bin\Rscript' Exemple :
             -   PATH_R indicate where R is stored on the computer. Need to change it depending on R localisation and OS.
+```
+PATH= r"C:\Users\mchahdil\Documents\Freeze3\\"
+```
  
 
 # Remarque:
@@ -163,15 +177,7 @@ Build the homepage for the application on javascript (done with the librairy cyt
     - blabla
     - blabla
     - blabla
-
-section R modifier path on the R script [name]
-```
-folder = "C:\\Users\\mchahdil\\Documents\\Freeze3\\\\output_5HPO\\\\curation_input\\"
-setwd(folder)
-
-input_json = "Freezes1_2_3_noduplicates_noparents_with_5phenotypes_complete\\"
-output_json = "Freezes1_2_3_noduplicates_noparents_with_5phenotypes_aftercuration_complete\\"
-```
+ 
 
 mettre paragraphe runsolvedRD
   expliquer les output generer 
