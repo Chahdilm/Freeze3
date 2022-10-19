@@ -68,18 +68,23 @@ setwd(folder)
 input_json = "Freezes1_2_3_noduplicates_noparents_with_5phenotypes_complete\\"
 output_json = "Freezes1_2_3_noduplicates_noparents_with_5phenotypes_aftercuration_complete\\"
 ```
+
   -   Python script *path_variable.py*.
       -   Change the path of the variable **PATH**. 
       -   Exmemple :
+      -   
 ```
 PATH= r"C:\Users\mchahdil\Documents\Freeze3\\"
 ```
+
             -   PATH describes the location of the main file named Freeze3. All variables that store paths depend on the PATH variable.
       -   Change the path of the variable **PATH_R**. 
       -   Exemple : 
+      
 ```
 PATH= r"C:\Program Files\R\R-4.2.1\bin\Rscript"
 ```
+
             -   PATH_R indicates where R is stored on the computer. It is necessary to modify it depending on the location of R and the OS use (window,linux or mac).
  
  
