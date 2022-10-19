@@ -1,5 +1,4 @@
-import pandas as pd 
-import os
+import pandas as pd
 import json
 
 
@@ -13,7 +12,7 @@ from script.path_variable import *
 
 
 ##############################################################################################################################
-print("###############\nSTART 1_stepC2.py\n###############\n")
+print("###############\nSTART 5_stepC2.py\n###############\n")
 save_start_time =datetime.datetime.utcnow()
 
 print('\n####### STEP C2')

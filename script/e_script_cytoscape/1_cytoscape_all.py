@@ -1,7 +1,6 @@
 import pandas as pd
-from multiprocessing import Pool, Process
 import datetime
-from time import perf_counter, sleep
+from time import perf_counter
 
 from threading import Thread
 from script.path_variable import *

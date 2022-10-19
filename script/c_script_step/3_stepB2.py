@@ -10,7 +10,7 @@ from script.path_variable import *
 
 ##############################################################################################################################
 
-print("###############\nSTART 1_stepB2.py\n###############\n")
+print("###############\nSTART 3_stepB2.py\n###############\n")
 save_start_time =datetime.datetime.utcnow()
 
 
@@ -196,4 +196,4 @@ print("B2\t EXPORT DF OUTPUT : contain all stepB2 interactions\t",len(merge_allp
 print("B2\tTIME build all df : ",(tstop - tstart))
 
 
-print("###############\nEND 1_stepB2.py\n###############\n")
+print("###############\nEND 3_stepB2.py\n###############\n")

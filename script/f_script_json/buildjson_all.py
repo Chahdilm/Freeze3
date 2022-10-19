@@ -424,10 +424,10 @@ if __name__ == '__main__':
 
     tab_step = ["A1","A2",'B1','B2','C1','C2']
     variant_step =  ["StepA1_variants_28.1.22.xlsx","StepA2_variants_28.1.22.xlsx",'StepB1_variants_28.1.22.xlsx','StepB2_variants_25.2.22.xlsx','StepC1_variants_25.2.22.xlsx','StepC2_variants_25.2.22.xlsx']
-     # tab_step = ["A1"]
-     # variant_step = ["StepA2_variants_28.1.22.xlsx"]
+    # tab_step = ["A1"]
+    # variant_step = ["StepA2_variants_28.1.22.xlsx"]
 
-     list_proc = []
+    list_proc = []
     for i  in range(len(tab_step)):
         print(tab_step[i],'\t',variant_step[i])
         P_step = Process(target=build_variant_AC_json, args=(tab_step[i],pd.read_excel(PATH_INPUT_VARIANT+variant_step[i], usecols=[2,8,37])))

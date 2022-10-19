@@ -148,22 +148,22 @@ if __name__ == '__main__':
     ###################################
     #####        MINI TSV       ######
     ###################################
-    start = time.process_time()
-    list_proc = []
-
-    print(files_minitsv[0],'\t', files_minitsv.index(files_minitsv[0]))
-    P_step = Process(target=script_step, args = (files_minitsv[0],str(PATH_SCRIPT+os_files[3]+'\\')))
-    list_proc.append(P_step)
-
-
-    for one_proc in list_proc:
-        one_proc.start()
-
-    for one_proc in list_proc:
-        one_proc.join()
-        print(f'Process  is alive: {one_proc.is_alive()}\n')
-        print("\nTIME END\t ", datetime.datetime.utcnow())
-    print('time : ', time.process_time() - start)
+    # start = time.process_time()
+    # list_proc = []
+    #
+    # print(files_minitsv[0],'\t', files_minitsv.index(files_minitsv[0]))
+    # P_step = Process(target=script_step, args = (files_minitsv[0],str(PATH_SCRIPT+os_files[3]+'\\')))
+    # list_proc.append(P_step)
+    #
+    #
+    # for one_proc in list_proc:
+    #     one_proc.start()
+    #
+    # for one_proc in list_proc:
+    #     one_proc.join()
+    #     print(f'Process  is alive: {one_proc.is_alive()}\n')
+    #     print("\nTIME END\t ", datetime.datetime.utcnow())
+    # print('time : ', time.process_time() - start)
 
     ###################################
     #####        CYTOSCAPE      #######

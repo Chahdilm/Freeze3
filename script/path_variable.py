@@ -1,7 +1,10 @@
 PATH= r"C:\Users\mchahdil\Documents\Freeze3\\"
-PATH_SCRIPT = PATH +  r"script\\"
+PATH_R = r'C:\Program Files\R\R-4.2.1\bin\Rscript'
+
 
 ############################################################################################################################
+PATH_SCRIPT = PATH +  r"script\\"
+
 PATH_INPUT = r"C:\Users\mchahdil\Documents\Freeze3\\input\\"
 PATH_OUTPUT = r"C:\Users\mchahdil\Documents\Freeze3\\output_5HPO\\"
 
