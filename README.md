@@ -64,7 +64,7 @@ install.packages("ontologyIndex")
 
 
 ## Description
-#### **FOLDER :a_script_curation** :
+### **FOLDER :a_script_curation** :
 From brut phenopacket to filtered one without parent and with curation phenopacket 
 Output : *output_5HPO\curation_input* folder
   -   **1_filter_file_phenopacket.py** : 
@@ -87,7 +87,7 @@ Output : *output_5HPO\curation_input* folder
 
 - Phenopackets used for la suite is on folder *Freezes1_2_3_noduplicates_noparents_with_5phenotypes_aftercuration_complete* 
 
-- **FOLDER :b_script_get_gene** :
+**FOLDER :b_script_get_gene** :
 - pas de chiffre devant car pas d'ordre need ici
   -   **get_gene_from_case.py** : 
   -   Get genes from phenopackets output save in folder *output_5HPO\gene_info\gene_from_json_case.tsv*
