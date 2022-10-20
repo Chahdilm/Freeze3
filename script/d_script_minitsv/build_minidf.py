@@ -9,21 +9,41 @@ from multiprocessing import Queue, Process, Pool
 import time
 import datetime
 
-def build_mini(df_step,step,path):
-    phenopacket =  df_step.iloc[:, 0]
+# def build_mini(df_step,step,path):
+#     phenopacket =  df_step.iloc[:, 0]
+#     # time start
+#     tstart = perf_counter()
+#
+#     # this loop will export a df for each case of interest (named phenopacket here)
+#     for onepheno in phenopacket:
+#
+#         mini_df = df_step[df_step.iloc[:, 0] == str(onepheno) ]
+#         mini_df.to_csv(path+str(onepheno)+"_"+str(step)+".tsv", sep='\t',index=False)
+#
+#     # time end
+#     tstop = perf_counter()
+#     print(str(step)+"\tTIME build all df : ",(tstop - tstart))
+#     print(str(step)+"\tEXPORT EACH CASE\tNB :  ", len(phenopacket),"\tDONE")
+
+def build_mini(df_step,step,path,list_phenopacket):
+    for onepheno in list_phenopacket:
+        mini_df = df_step[(df_step.phenopacket.values ==onepheno)]
+
+        mini_df.to_csv(path+str(onepheno)+"_"+str(step)+".tsv", sep='\t',index=False)
+
+def build_mini_df_each_pheno(df_step,step,path):
     # time start
     tstart = perf_counter()
 
-    # this loop will export a df for each case of interest (named phenopacket here)
-    for onepheno in phenopacket:
+    # get all phenopacket
+    list_phenopacket = df_step["phenopacket"].drop_duplicates().tolist()
 
-        mini_df = df_step[df_step.iloc[:, 0] == str(onepheno) ]
-        mini_df.to_csv(path+str(onepheno)+"_"+str(step)+".tsv", sep='\t',index=False)
+    build_mini(df_step, step, path, list_phenopacket)
 
-    # time end
+     # time end
     tstop = perf_counter()
-    print(str(step)+"\tTIME build all df : ",(tstop - tstart))
-    print(str(step)+"\tEXPORT EACH CASE\tNB :  ", len(phenopacket),"\tDONE")
+    print(str(step) + "\tTIME build all df : ", (tstop - tstart))
+    print(str(step) + "\tEXPORT EACH CASE\tNB :  ", len(list_phenopacket), "\tDONE")
 
 
 if __name__ == '__main__':
@@ -36,7 +56,7 @@ if __name__ == '__main__':
     # df_stepB2 = pd.read_csv(PATH_OUTPUT+r"stepB2.tsv", sep='\t') #stepC2_only  stepB2
     # df_stepC1 = pd.read_csv(PATH_OUTPUT+r"stepC1.tsv", sep='\t')
     # df_stepC2 = pd.read_csv(PATH_OUTPUT+r"stepC2.tsv", sep='\t') # stepC2_only
-    #
+
     # build_mini(df_stepA2,'A2',PATH_OUTPUT_TSV)
     # build_mini(df_stepA1,'A1',PATH_OUTPUT_TSV)
     # build_mini(df_stepB1,'B1',PATH_OUTPUT_TSV)
@@ -50,7 +70,7 @@ if __name__ == '__main__':
     list_proc = []
     for i in range(len(tab_step)):
         print("build_minidf.py\t",tab_step[i],'\t')
-        P_step = Process(target=build_mini, args=((pd.read_csv(PATH_OUTPUT+r"step"+tab_step[i]+".tsv",sep='\t'),(tab_step[i]),(PATH_OUTPUT_TSV))))
+        P_step = Process(target=build_mini_df_each_pheno, args=((pd.read_csv(PATH_OUTPUT+r"step"+tab_step[i]+".tsv",sep='\t'),(tab_step[i]),(PATH_OUTPUT_TSV))))
         list_proc.append(P_step)
 
 

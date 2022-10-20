@@ -5,6 +5,11 @@ import json
 
 from script.path_variable import *
 
+import logging
+logging.basicConfig(filename='example.log', filemode='w', level=logging.DEBUG,format='%(asctime)-10s:%(levelname)-20s:%(name)s:%(message)-20s')
+logger = logging.getLogger()
+
+logger.debug("{} - Reading {} rows in {} after skipping {} rows...".format())
 
 
 ##################################################################################################################################################################################

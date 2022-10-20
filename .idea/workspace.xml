@@ -1,20 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e75c682d-e874-4309-be47-b9ea524fbffa" name="Changes" comment="">
+    <list default="true" id="e75c682d-e874-4309-be47-b9ea524fbffa" name="Changes" comment="Rename some files and add some modifications">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/script/a_script_curation/2_curation.py" beforeDir="false" afterPath="$PROJECT_DIR$/script/a_script_curation/2_curation.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/script/a_script_curation/4_RUN_runSolvedRD.py" beforeDir="false" afterPath="$PROJECT_DIR$/script/a_script_curation/4_RUN_runSolvedRD.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/script/c_script_step/1_stepB1.py" beforeDir="false" afterPath="$PROJECT_DIR$/script/c_script_step/2_stepB1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/script/c_script_step/1_stepB2.py" beforeDir="false" afterPath="$PROJECT_DIR$/script/c_script_step/3_stepB2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/script/c_script_step/1_stepC1.py" beforeDir="false" afterPath="$PROJECT_DIR$/script/c_script_step/4_stepC1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/script/c_script_step/1_stepC2.py" beforeDir="false" afterPath="$PROJECT_DIR$/script/c_script_step/5_stepC2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/script/a_script_curation/1_filter_file_phenopacket.py" beforeDir="false" afterPath="$PROJECT_DIR$/script/a_script_curation/1_filter_file_phenopacket.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/script/d_script_minitsv/build_minidf.py" beforeDir="false" afterPath="$PROJECT_DIR$/script/d_script_minitsv/build_minidf.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/script/e_script_cytoscape/1_cytoscape_all.py" beforeDir="false" afterPath="$PROJECT_DIR$/script/e_script_cytoscape/1_cytoscape_all.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/script/f_script_json/buildjson_all.py" beforeDir="false" afterPath="$PROJECT_DIR$/script/f_script_json/buildjson_all.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/script/logs/py4cytoscape.log" beforeDir="false" afterPath="$PROJECT_DIR$/script/logs/py4cytoscape.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/script/path_variable.py" beforeDir="false" afterPath="$PROJECT_DIR$/script/path_variable.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/script/run_all_script.py" beforeDir="false" afterPath="$PROJECT_DIR$/script/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,7 +24,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
-  <component name="RunManager" selected="Python.main">
+  <component name="RunManager" selected="Python.build_minidf">
     <configuration name="2_curation" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Freeze3" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -149,10 +139,10 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.build_minidf" />
         <item itemvalue="Python.main" />
         <item itemvalue="Python.3_transform_phenopackets_cleaned_for_RunSolveRD" />
         <item itemvalue="Python.2_curation" />
-        <item itemvalue="Python.build_minidf" />
       </list>
     </recent_temporary>
   </component>
@@ -165,6 +155,14 @@
       <option name="presentableId" value="Default" />
       <updated>1666012772967</updated>
     </task>
+    <task id="LOCAL-00001" summary="Rename some files and add some modifications">
+      <created>1666191257153</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1666191257154</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -178,5 +176,9 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Rename some files and add some modifications" />
+    <option name="LAST_COMMIT_MESSAGE" value="Rename some files and add some modifications" />
   </component>
 </project>
