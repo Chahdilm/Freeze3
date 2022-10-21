@@ -1,6 +1,6 @@
 import subprocess
 import sys
-from multiprocessing import Queue, Process, Pool
+from multiprocessing import Process
 import time
 
 import datetime
@@ -47,123 +47,137 @@ if __name__ == '__main__':
 
 
     os_files = os.listdir(PATH_SCRIPT)
-    files_curation = os.listdir(PATH_SCRIPT+'/'+os_files[0]) # folder a_script_curation
-    files_gene = os.listdir(PATH_SCRIPT+'/'+os_files[1]) # folder a_script_curation
-    files_all_step = os.listdir(PATH_SCRIPT+'/'+os_files[2]) # folder b_script_step
-    files_minitsv = os.listdir(PATH_SCRIPT+'/'+os_files[3]) # folder c_script_minitsv
-    files_cytoscape = os.listdir(PATH_SCRIPT+'/'+os_files[4]) # folder d_script_cytoscape
-    files_json = os.listdir(PATH_SCRIPT+'/'+os_files[5]) # folder e_script_json
-    files_hp = os.listdir(PATH_SCRIPT+'/'+os_files[6]) # f_script_homepageJS a_script_curation
+    files_curation = os.listdir(PATH_SCRIPT+'/'+"a_script_curation") # folder a_script_curation
+    files_curation.remove('__init__.py')
+
+    files_gene = os.listdir(PATH_SCRIPT+'/'+"b_script_get_gene") # folder b_script_get_gene
+    files_gene.remove('__init__.py')
+
+    files_all_step = os.listdir(PATH_SCRIPT+'/'+"c_script_step") # folder c_script_step
+    files_all_step.remove('__init__.py')
+
+    files_minitsv = os.listdir(PATH_SCRIPT+'/'+"d_script_minitsv") # folder d_script_minitsv
+    files_minitsv.remove('__init__.py')
+
+    files_cytoscape = os.listdir(PATH_SCRIPT+'/'+"e_script_cytoscape") # folder e_script_cytoscape
+    files_cytoscape.remove('__init__.py')
+
+    files_json = os.listdir(PATH_SCRIPT+'/'+"f_script_json") # folder f_script_json
+    files_cytoscape.remove('__init__.py')
+
+    files_hp = os.listdir(PATH_SCRIPT+'/'+"g_script_homepageJS") # g_script_homepageJS
+    files_hp.remove('__init__.py')
+
+
+    ##################################
+    ####         CURATION      #######
+    ##################################
+    start = time.process_time()
+    list_proc = []
+    for file in files_curation:
+        print(file, '\t', files_curation.index(file))
+        P_step = Process(target=script_step, args=(file, str(PATH_SCRIPT + "a_script_curation" + '/')))
+        list_proc.append(P_step)
+
+    list_proc[0].start()    # 1_filter_file_phenopacket
+    list_proc[0].join()     # 1_filter_file_phenopacket
+
+    list_proc[1].start()    # 2_curation.py
+    list_proc[1].join()     # 2_curation.py
+    print("\nTIME END\t ", datetime.datetime.utcnow())
+    print(f'Process 1_filter_file_phenopacket.py  is alive: {list_proc[1].is_alive()}')
+
+    list_proc[2].start()     # 3_transform_phenopackets_cleaned_for_RunSolveRD.py
+    list_proc[2].join()     # 3_transform_phenopackets_cleaned_for_RunSolveRD.py
+    print("\nTIME END\t ", datetime.datetime.utcnow())
+    print(f'Process 2_curation.py is alive: {list_proc[2].is_alive()}\n\n')
+
+    list_proc[3].start()     # 4_RUN_runSolvedRD.py
+    list_proc[3].join()     # 4_RUN_runSolvedRD.py
+    print("\nTIME END\t ", datetime.datetime.utcnow())
+    print(f'Process 3_transform_phenopackets_cleaned_for_RunSolveRD.py is alive: {list_proc[3].is_alive()}\n\n')
+
+    print('END a_folder time : ', time.process_time() - start)
 
     ###################################
-    #####         CURATION      #######
+    #####         GET GENES     #######
     ###################################
-    # start = time.process_time()
-    # list_proc = []
-    # for file in files_curation:
-    #     print(file, '\t', files_curation.index(file))
-    #     P_step = Process(target=script_step, args=(file, str(PATH_SCRIPT + os_files[0] + '\\')))
-    #     list_proc.append(P_step)
 
-    # list_proc[0].start()    # 1_filter_file_phenopacket
-    # list_proc[0].join()     # 1_filter_file_phenopacket
+    start = time.process_time()
+    list_proc_input = []
+    for file in files_gene:
+        print(file,'\t', files_gene.index(file))
+        P_step = Process(target=script_step, args = (file,str(PATH_SCRIPT+"b_script_get_gene"+'/')))
+        list_proc_input.append(P_step)
 
-    # list_proc[1].start()    # 2_curation.py
-    # list_proc[1].join()     # 2_curation.py
-    # print("\nTIME END\t ", datetime.datetime.utcnow())
-    # print(f'Process 1_filter_file_phenopacket.py  is alive: {list_proc[1].is_alive()}')
-    #
-    # list_proc[2].start()     # 3_transform_phenopackets_cleaned_for_RunSolveRD.py
-    # list_proc[2].join()     # 3_transform_phenopackets_cleaned_for_RunSolveRD.py
-    # print("\nTIME END\t ", datetime.datetime.utcnow())
-    # print(f'Process 2_curation.py is alive: {list_proc[2].is_alive()}\n\n')
+    for one_proc in list_proc_input:
+        one_proc.start()
 
-    # list_proc[3].start()     # 4_RUN_runSolvedRD.py
-    # list_proc[3].join()     # 4_RUN_runSolvedRD.py
-    # print("\nTIME END\t ", datetime.datetime.utcnow())
-    # print(f'Process 3_transform_phenopackets_cleaned_for_RunSolveRD.py is alive: {list_proc[3].is_alive()}\n\n')
-    #
-    # print('END a_folder time : ', time.process_time() - start)
-    #
-    # ###################################
-    # #####         GET GENES     #######
-    # ###################################
-    #
-    # start = time.process_time()
-    # list_proc_input = []
-    # for file in files_gene:
-    #     print(file,'\t', files_gene.index(file))
-    #     P_step = Process(target=script_step, args = (file,str(PATH_SCRIPT+os_files[1]+'\\')))
-    #     list_proc_input.append(P_step)
-    #
-    # for one_proc in list_proc_input:
-    #     one_proc.start()
-    #
-    # for one_proc in list_proc_input:
-    #     one_proc.join()
-    #     print(f'Process  is alive: {one_proc.is_alive()}\n')
-    #     print("\nTIME END\t ", datetime.datetime.utcnow())
-    #
-    # print('END time B_folder: ', time.process_time() - start)
-    # ####################################
-    #
-    #
-    # ###################################
-    # #####         STEPS         #######
-    # ###################################
-    #
-    # start = time.process_time()
-    # list_proc = []
-    # for file in files_all_step:
-    #     print(file, '\t', files_all_step.index(file))
-    #     P_step = Process(target=script_step, args=(file, str(PATH_SCRIPT + os_files[2] + '\\')))
-    #     list_proc.append(P_step)
-    #
-    #
-    # list_proc[0].start()    # A1,A2
-    # list_proc[1].start()    # B1
-    # list_proc[0].join()     # A1,A2
-    # list_proc[1].join()     # B1
-    # print("\nTIME END\tA1\tA2\tB1: ", datetime.datetime.utcnow())
-    # print(f'Process A1 A2 is alive: {list_proc[1].is_alive()}')
-    # print(f'Process B1 is alive: {list_proc[2].is_alive()}\n\n')
-    #
-    # list_proc[2].start()    # B2
-    # list_proc[3].start()    # C1
-    # list_proc[2].join()     # B2
-    # list_proc[3].join()     # C1
-    # print("\nTIME END\tB2\tC1: ", datetime.datetime.utcnow())
-    # print(f'Process B2 is alive: {list_proc[3].is_alive()}')
-    # print(f'Process C1 is alive: {list_proc[4].is_alive()}\n\n')
-    #
-    # list_proc[4].start()     # C2
-    # list_proc[4].join()     # C2
-    # print("\nTIME END  C2: ", datetime.datetime.utcnow())
-    # print(f'Process C2 is alive: {list_proc[5].is_alive()}\n\n')
-    #
-    # print('time : ', time.process_time() - start)
-    # ####################################
+    for one_proc in list_proc_input:
+        one_proc.join()
+        print(f'Process  is alive: {one_proc.is_alive()}\n')
+        print("\nTIME END\t ", datetime.datetime.utcnow())
+
+    print('END time B_folder: ', time.process_time() - start)
+    ####################################
 
 
     ###################################
-    #####        MINI TSV       ######
+    #####         STEPS         #######
     ###################################
-    # start = time.process_time()
-    # list_proc = []
-    #
-    # print(files_minitsv[0],'\t', files_minitsv.index(files_minitsv[0]))
-    # P_step = Process(target=script_step, args = (files_minitsv[0],str(PATH_SCRIPT+os_files[3]+'\\')))
-    # list_proc.append(P_step)
-    #
-    #
-    # for one_proc in list_proc:
-    #     one_proc.start()
-    #
-    # for one_proc in list_proc:
-    #     one_proc.join()
-    #     print(f'Process  is alive: {one_proc.is_alive()}\n')
-    #     print("\nTIME END\t ", datetime.datetime.utcnow())
-    # print('time : ', time.process_time() - start)
+
+    start = time.process_time()
+    list_proc = []
+    for file in files_all_step:
+        print(file, '\t', files_all_step.index(file))
+        P_step = Process(target=script_step, args=(file, str(PATH_SCRIPT +"c_script_step" + '/')))
+        list_proc.append(P_step)
+
+
+    list_proc[0].start()    # A1,A2
+    list_proc[1].start()    # B1
+    list_proc[0].join()     # A1,A2
+    list_proc[1].join()     # B1
+    print("\nTIME END\tA1\tA2\tB1: ", datetime.datetime.utcnow())
+    print(f'Process A1 A2 is alive: {list_proc[1].is_alive()}')
+    print(f'Process B1 is alive: {list_proc[2].is_alive()}\n\n')
+
+    list_proc[2].start()    # B2
+    list_proc[3].start()    # C1
+    list_proc[2].join()     # B2
+    list_proc[3].join()     # C1
+    print("\nTIME END\tB2\tC1: ", datetime.datetime.utcnow())
+    print(f'Process B2 is alive: {list_proc[3].is_alive()}')
+    print(f'Process C1 is alive: {list_proc[4].is_alive()}\n\n')
+
+    list_proc[4].start()     # C2
+    list_proc[4].join()     # C2
+    print("\nTIME END  C2: ", datetime.datetime.utcnow())
+    print(f'Process C2 is alive: {list_proc[5].is_alive()}\n\n')
+
+    print('time : ', time.process_time() - start)
+    ####################################
+
+
+    ##################################
+    ####        MINI TSV       ######
+    ##################################
+    start = time.process_time()
+    list_proc = []
+
+    print(files_minitsv[0],'\t', files_minitsv.index(files_minitsv[0]))
+    P_step = Process(target=script_step, args = (files_minitsv[0],str(PATH_SCRIPT+"d_script_minitsv"+'/')))
+    list_proc.append(P_step)
+
+
+    for one_proc in list_proc:
+        one_proc.start()
+
+    for one_proc in list_proc:
+        one_proc.join()
+        print(f'Process  is alive: {one_proc.is_alive()}\n')
+        print("\nTIME END\t ", datetime.datetime.utcnow())
+    print('time : ', time.process_time() - start)
 
     ###################################
     #####        CYTOSCAPE      #######
@@ -172,7 +186,7 @@ if __name__ == '__main__':
     list_proc = []
     for file in files_cytoscape:
         print(file, '\t', files_cytoscape.index(file))
-        P_step = Process(target=script_step, args=(file, str(PATH_SCRIPT + os_files[4] + '\\')))
+        P_step = Process(target=script_step, args=(file, str(PATH_SCRIPT + "e_script_cytoscape" + '/')))
         list_proc.append(P_step)
 
     list_proc[0].start()  # 1_cytoscape_all
@@ -198,7 +212,7 @@ if __name__ == '__main__':
     list_proc_input = []
     for file in files_json:
         print(file,'\t', files_json.index(file))
-        P_step = Process(target=script_step, args = (file,str(PATH_SCRIPT+os_files[5]+'\\')))
+        P_step = Process(target=script_step, args = (file,str(PATH_SCRIPT+"f_script_json"+'/')))
         list_proc_input.append(P_step)
 
     for one_proc in list_proc_input:
@@ -218,7 +232,7 @@ if __name__ == '__main__':
 
 
     print(files_hp[0],'\t', files_hp.index(files_hp[0]))
-    P_step = Process(target=script_step, args = (files_hp[0],str(PATH_SCRIPT+os_files[6]+'\\')))
+    P_step = Process(target=script_step, args = (files_hp[0],str(PATH_SCRIPT+"g_script_homepageJS"+'/')))
     list_proc.append(P_step)
 
     for one_proc in list_proc:

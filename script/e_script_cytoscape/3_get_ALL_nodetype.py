@@ -90,7 +90,7 @@ df_type_gene= df_type_gene.drop_duplicates()
 
 ####################################
 ## node type : solved/unsolved
-all_pheno_list = NT_p.all_pheno_list # all json phenopacket
+all_pheno_list = NT_p.all_pheno_list_f # all json phenopacket
 df_excels = NT_p.df_final_5_hpo_gene_afterC     # all solved case associater with one gene
 
 all_cases = set()
