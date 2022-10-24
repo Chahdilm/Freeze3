@@ -18,7 +18,6 @@ Solve rd project aim to helped through diagnostics hypothesis on unsolved patien
 # Version : 
 
 - Project done on Window 10 21H2
-- Compatible with Mac OS Catalina Version 10.15.7 (19H15)  [...] **WIP**
 
   - R 4.2.1
       - R Language for IntelliJ on pycharm (223.6646—223.6646.*)
@@ -62,7 +61,7 @@ install.packages("ontologyIndex")
   -   R script *curation_excluding_redundant_terms_with_ontologyIndex.R*.
       -   Change the path of the variable : **folder**.
 ```
-folder = "C:\\Users\\mchahdil\\Documents\\Freeze3\\\\output_5HPO\\\\curation_input\\"
+folder = "C:\\Users\\username\\...\\Freeze3\\output_5HPO\\curation_input\\"
 setwd(folder)
 
 input_json = "Freezes1_2_3_noduplicates_noparents_with_5phenotypes_complete\\"
@@ -74,15 +73,21 @@ output_json = "Freezes1_2_3_noduplicates_noparents_with_5phenotypes_aftercuratio
             -   PATH describes the location of the main file named Freeze3. All variables that store paths depend on the PATH variable.
             -   Exemple :
                   ```
-                  PATH= r"C:\Users\mchahdil\Documents\Freeze3\\"
+                  PATH= r"C:\Users\username\Documents\Freeze3\\"
                   ```
-
       -   Change the path of the variable **PATH_R**. 
             -   PATH_R indicates where R is stored on the computer. It is necessary to modify it depending on the location of R and the OS use (window,linux or mac).
             -   Exemple : 
                   ```
-                  PATH= r"C:\Program Files\R\R-4.2.1\bin\Rscript"
+                  PATH_R= r"C:\Program Files\R\R-4.2.1\bin\Rscript"
                   ```
+                  
+  - Python script *main.py*
+      -   If needed uncomment the list.remove('__init__.py') part for all list. Sometime __init__.py is included on the list thus it should be removed, if it's not into the list to need to change the code.
+           -   Exemple : 
+                  ```
+                  # files_all_step.remove('__init__.py') # uncomment if needed
+                  ```  
 
  
  
