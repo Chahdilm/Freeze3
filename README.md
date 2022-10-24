@@ -76,6 +76,11 @@ output_json = "Freezes1_2_3_noduplicates_noparents_with_5phenotypes_aftercuratio
                   ```
                   PATH= r"C:\Users\mchahdil\Documents\Freeze3\\"
                   ```
+       -   If needed uncomment the list.remove('__init__.py') part for all list. Sometime __init__.py is included on the list thus it should be removed, if it's not into the list to need to change the code.
+            -   Exemple :
+                  ```
+                 # files_all_step.remove('__init__.py') # uncomment if needed
+                  ```  
 
       -   Change the path of the variable **PATH_R**. 
             -   PATH_R indicates where R is stored on the computer. It is necessary to modify it depending on the location of R and the OS use (window,linux or mac).
