@@ -45,28 +45,28 @@ if __name__ == '__main__':
     create_dir(PATH_OUTPUT + "autocomplete")
 
 
-
+    # if needed uncomment remove action depend on os
     os_files = os.listdir(PATH_SCRIPT)
     files_curation = os.listdir(PATH_SCRIPT+'/'+"a_script_curation") # folder a_script_curation
-    files_curation.remove('__init__.py')
+    # files_curation.remove('__init__.py')
 
     files_gene = os.listdir(PATH_SCRIPT+'/'+"b_script_get_gene") # folder b_script_get_gene
-    files_gene.remove('__init__.py')
+    # files_gene.remove('__init__.py')
 
     files_all_step = os.listdir(PATH_SCRIPT+'/'+"c_script_step") # folder c_script_step
-    files_all_step.remove('__init__.py')
+    # files_all_step.remove('__init__.py')
 
     files_minitsv = os.listdir(PATH_SCRIPT+'/'+"d_script_minitsv") # folder d_script_minitsv
-    files_minitsv.remove('__init__.py')
+    # files_minitsv.remove('__init__.py')
 
     files_cytoscape = os.listdir(PATH_SCRIPT+'/'+"e_script_cytoscape") # folder e_script_cytoscape
-    files_cytoscape.remove('__init__.py')
+    # files_cytoscape.remove('__init__.py')
 
     files_json = os.listdir(PATH_SCRIPT+'/'+"f_script_json") # folder f_script_json
-    files_cytoscape.remove('__init__.py')
+    # files_cytoscape.remove('__init__.py')
 
     files_hp = os.listdir(PATH_SCRIPT+'/'+"g_script_homepageJS") # g_script_homepageJS
-    files_hp.remove('__init__.py')
+    # files_hp.remove('__init__.py')
 
 
     ##################################
