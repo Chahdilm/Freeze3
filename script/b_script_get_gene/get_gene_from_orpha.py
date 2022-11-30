@@ -1,32 +1,36 @@
+from SolveRD.script.path_variable import *
 
 import pandas as pd
+import logging
 
-from script.path_variable import *
+# logging.basicConfig(level=logging.INFO,format='%(asctime)-10s:%(levelname)-20s:%(name)s:%(message)-20s')
+logging.basicConfig(filename=PATH_INIT+'/project.log',  level=logging.DEBUG,format='%(asctime)-10s:%(levelname)-20s:%(name)s:%(message)-20s')
+
+logger = logging.getLogger()
+
+logger.info("START\tget_gene_from_orpha.py\n ")
 
 
 list_pd1 = []
 orphacode_id = disordergroup = disordertype = ""
-with open(PATH_INPUT_PRODUCT_PD1 ,'r') as f:
+with open(PATH_INPUT_PRODUCT_PD1 ,'r',encoding="ISO-8859-1") as f:
     ligne = f.readline()
     while ligne != "":
         if "<JDBOR" in ligne:
-            print("PD1:\t" ,ligne)
+            logger.info("get_gene_from_orpha.py\tPD_1:\t{}".format(ligne))
         elif "<DisorderList" in ligne:
-            print("PD1:\t" ,ligne)
+            logger.info("get_gene_from_orpha.py\tPD_1:\t{}".format(ligne))
         elif '<OrphaCode>' in ligne:
-            # print(' OrphaCode section')
             new_ligne = ligne.replace('<OrphaCode>' ,'ORPHA:').strip()
             new_ligne = new_ligne.replace('</OrphaCode>' ,'').strip()
 
             orphacode_id = new_ligne
         elif  '<DisorderType' in ligne:
-            # print('  DisorderType section')
             dec_ligne =f.readline()
             new_ligne = dec_ligne.replace('<Name lang="en">', '').strip()
             new_ligne = new_ligne.replace('</Name>', '').strip()
             disordertype = new_ligne
         elif '<DisorderGroup' in ligne:
-            # print('  <DisorderGroup section')
             dec_ligne = f.readline()
             new_ligne = dec_ligne.replace('<Name lang="en">', '').strip()
             new_ligne = new_ligne.replace('</Name>', '').strip()
@@ -34,38 +38,35 @@ with open(PATH_INPUT_PRODUCT_PD1 ,'r') as f:
 
         list_pd1.append((orphacode_id,disordertype, disordergroup))
         ligne = f.readline()
-print('get_gene_from_orpha.py\tPD1:\tread xml product 1 HPO which containt all orphas with HPO ')
+logger.info('get_gene_from_orpha.py\tPD1:\tread xml product 1 HPO which containt all orphas with HPO ')
 
 list_pd6 = []
 orphacode_id = disordergroup = disordertype = ""
 symbol = 'symbol'
-with open(PATH_INPUT_PRODUCT_PD6, 'r') as f:
+with open(PATH_INPUT_PRODUCT_PD6, 'r',encoding="ISO-8859-1") as f:
     ligne = f.readline()
 
     while ligne != "":
         if "<JDBOR" in ligne:
-            print("PD6:\t", ligne)
+            logger.info("get_gene_from_orpha.py\tPD_6:\t{}".format(ligne))
         elif "<DisorderList" in ligne:
-            print("PD6:\t", ligne)
+            logger.info("get_gene_from_orpha.py\tPD_6:\t{}".format(ligne))
         elif '<OrphaCode>' in ligne:
-            # print('  OrphaCode section')
             new_ligne = ligne.replace('<OrphaCode>', 'ORPHA:').strip()
             new_ligne = new_ligne.replace('</OrphaCode>', '').strip()
             orphacode_id = new_ligne
         elif '<DisorderType' in ligne:
-            # print('  DisorderType section')
             dec_ligne = f.readline()
             new_ligne = dec_ligne.replace('<Name lang="en">', '').strip()
             new_ligne = new_ligne.replace('</Name>', '').strip()
             disordertype = new_ligne
         elif '<DisorderGroup' in ligne:
-            # print('  <DisorderGroup section')
             dec_ligne = f.readline()
             new_ligne = dec_ligne.replace('<Name lang="en">', '').strip()
             new_ligne = new_ligne.replace('</Name>', '').strip()
             disordergroup = new_ligne
         elif '<Symbol>' in ligne:
-            # print('rentre symbol')
+
             new_ligne = ligne.replace('<Symbol>', '').strip()
             new_ligne = new_ligne.replace('</Symbol>', '').strip()
             symbol = new_ligne
@@ -74,7 +75,7 @@ with open(PATH_INPUT_PRODUCT_PD6, 'r') as f:
         symbol = 'symbol'
         ligne = f.readline()
 
-print('get_gene_from_orpha.py\tPD6:\tread xml product 6 genes which containt all orphas with genes ')
+logger.info('get_gene_from_orpha.py\tPD6:\tread xml product 6 genes which containt all orphas with genes ')
 
 
 
@@ -83,19 +84,17 @@ get_pd_child =list()
 orphacode_id_parent = orphacode_id_child = ""
 symbol = 'symbol'
 only_for_first_el = 0
-with open(PATH_INPUT_PRODUCT_PD_ORPHACHILD, 'r') as f:
+with open(PATH_INPUT_PRODUCT_PD_ORPHACHILD, 'r',encoding="ISO-8859-1") as f:
     ligne = f.readline()
     while ligne != "":
         if "<JDBOR" in ligne:
-            print("PD_CHILD:\t", ligne)
+            logger.info("get_gene_from_orpha.py\tPD_CHILD:\t{}".format(ligne))
         elif "<DisorderList" in ligne:
-            print("PD_CHILD:\t" ,ligne)
+            logger.info("get_gene_from_orpha.py\tPD_CHILD:\t{}".format(ligne))
         elif ('<OrphaCode>' in ligne) :
-            # print('rentre OrphaCode')
             dec_ligne = f.readline()
             dec_ligne = f.readline()
             if '<ClassificationNodeList' in dec_ligne:
-                #print('it  s a parent ')
                 new_ligne = ligne.replace('<OrphaCode>', 'ORPHA:').strip()
                 new_ligne = new_ligne.replace('</OrphaCode>', '').strip()
                 orphacode_id_parent=new_ligne
@@ -104,7 +103,7 @@ with open(PATH_INPUT_PRODUCT_PD_ORPHACHILD, 'r') as f:
                 new_ligne = new_ligne.replace('</OrphaCode>', '').strip()
                 orphacode_id_child = new_ligne
         elif '<Symbol>' in ligne:
-            # print('rentre symbol')
+
             new_ligne = ligne.replace('<Symbol>', '').strip()
             new_ligne = new_ligne.replace('</Symbol>', '').strip()
             symbol = new_ligne
@@ -113,7 +112,7 @@ with open(PATH_INPUT_PRODUCT_PD_ORPHACHILD, 'r') as f:
         symbol = 'symbol'
         ligne = f.readline()
 
-print('get_gene_from_orpha.py\tPD_CHILD:\tread xml special product child which containt all orphas with child ')
+logger.info('get_gene_from_orpha.py\tPD_CHILD:\tread xml special product child which containt all orphas with child ')
 
 # build and filter df for child
 df_pd_child = pd.DataFrame(get_pd_child, columns=["ORPHACode",'ORPHACode_child',"gene_child"])
@@ -163,10 +162,10 @@ for value in dict_df_pd1_pd6_child.values():
 
     if pd.isna(oneORPHAgene):
         if pd.isna(oneORPHAchildgene):
-            # print('les deux vide')
+            #both empty
             pass
         else:
-            # print('orpha child filled')
+            # orpha child filled
             load = "yes"  # gene parent not empty but chidl yes
 
     if (pd.isna(oneORPHAgene) and pd.isna(oneORPHAchildgene)):
@@ -196,5 +195,9 @@ df_pd6=df_pd6.drop_duplicates()
 
 
 
-print('get_gene_from_orpha.py\texport the df PATH_INPUT_PRODUCT_1_6_child')
+logger.info('get_gene_from_orpha.py\texport the df PATH_INPUT_PRODUCT_1_6_child')
 df_product.to_csv(PATH_OUTPUT_PRODUCT_1_6_child, sep='\t',index=False)
+
+
+logger.info("END\tget_gene_from_orpha.py\n ")
+

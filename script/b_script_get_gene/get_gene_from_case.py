@@ -1,16 +1,22 @@
 
-from script.path_variable import *
+from SolveRD.script.path_variable import *
 import json
 import os
 import pandas as pd
 
+import logging
+# logging.basicConfig(level=logging.INFO,format='%(asctime)-10s:%(levelname)-20s:%(name)s:%(message)-20s')
+logging.basicConfig(filename=PATH_INIT+'/project.log',  level=logging.DEBUG,format='%(asctime)-10s:%(levelname)-20s:%(name)s:%(message)-20s')
+logger = logging.getLogger()
+
+logger.info("START\tget_gene_from_case.py\n ")
 
 def get_gpap_solved(input, path):
     i = 0
     list_GPAP = set()
     while i < len(input):
         # open one phenopact per loop
-        with open(path + '\\' + str(input[i])) as file_phenopacket_result:
+        with open(path + '/' + str(input[i])) as file_phenopacket_result:
 
             one_result = json.load(file_phenopacket_result)
 
@@ -39,7 +45,7 @@ def get_gene_case_solved(input, path):
         """ from each phenopacket files (not the phenopacket resultats json one ) we open them and extract genes info 
         """
         # open one phenopact per loop
-        with open(path + '\\' + str(oneinput)) as file_phenopacket_result:
+        with open(path + '/' + str(oneinput)) as file_phenopacket_result:
             one_result = json.load(file_phenopacket_result)
 
             one_phenopacket_result = one_result['phenopacket']
@@ -79,11 +85,11 @@ def get_hpo_from_case(input, path,list_parent):
         """
         oneinput_splited = oneinput.split('.')
         if oneinput_splited[0] in list_parent:
-            # print('it s a parent\t',oneinput,oneinput_splited[0])
+            # it s a parent
             pass
         else:
             # open one phenopact per loop
-            with open(path + '\\' + str(oneinput)) as file_phenopacket_result:
+            with open(path + '/' + str(oneinput)) as file_phenopacket_result:
 
                 one_result = json.load(file_phenopacket_result)
 
@@ -124,7 +130,7 @@ def get_5HPO_gene_after_curation(input, path):
         """ from each phenopacket files (not the phenopacket resultats json one ) we open them and extract genes info 
         """
         # open one phenopact per loop
-        with open(path + '\\' + str(oneinput)) as file_phenopacket_result:
+        with open(path + '/' + str(oneinput)) as file_phenopacket_result:
             one_result = json.load(file_phenopacket_result)
 
             # HPO_list = one_result['phenotypes']
@@ -151,13 +157,13 @@ for onefile in json_files:
 
         all_pheno_list_f.append(onefile.split('.')[0])
 
-print("get_gene_from_case.py\tNumber of phenopacket available : ",len(set(all_pheno_list)))
+logger.info("get_gene_from_case.py\tNumber of phenopacket available : {}".format(len(set(all_pheno_list))))
 try:
     # Remove element from list phenopacket
     all_pheno_list.remove('results')
-    print("get_gene_from_case.py\tElement\tRemoved ")
+    logger.info("get_gene_from_case.py\tElement\tRemoved ")
 except :
-    print("get_gene_from_case.py\tElement\tAlreadyRemoved ")
+    logger.info("get_gene_from_case.py\tElement\tAlreadyRemoved ")
 
 
 
@@ -182,21 +188,17 @@ df_final_1_hpo,df_final_5_hpo = get_hpo_from_case(input_solved_no_parent,PATH_IN
 
 
 
-print(
-'get_gene_from_case.py\tNb phenopacket tot :\t',len(all_pheno_list),'\n',
-'\n',
-'get_gene_from_case.py\tNb phenopacket SOLVED GPAP :\t',len(df_case_GPAP[df_case_GPAP['status'] == "SOLVED"].drop_duplicates()),'\n',
-'get_gene_from_case.py\tNb phenopacket UNSOLVED GPAP :\t',len(df_case_GPAP[df_case_GPAP['status'] == "UNSOLVED"].drop_duplicates()),'\n',
-'get_gene_from_case.py\tNb phenopacket UNKNOW GPAP :\t',len(df_case_GPAP[df_case_GPAP['status'] == "UNKNOWN"].drop_duplicates()),'\n',
-'get_gene_from_case.py\tNb phenopacket UNKNOW + UNSOLVED GPAP :\t',(len(all_pheno_list)-len(df_case_GPAP[df_case_GPAP['status'] == "SOLVED"].drop_duplicates())),'\n',
-'\n',
-'get_gene_from_case.py\tNb phenopacket SOLVED Orphanet based on SOLVED GPAP :\t',len(df_case_solved_with_gene['phenopacket'].drop_duplicates()),'\n',
-'\n',
-'get_gene_from_case.py\tExcluding parent :\t',len(df_case_solved_with_gene_no_parent['phenopacket'].drop_duplicates()),'\n',
-'\n',
-'get_gene_from_case.py\t1 HPO :\t',len(set(df_final_1_hpo['phenopacket'])),'\n',
-'get_gene_from_case.py\t5 HPO :\t',len(set(df_final_5_hpo['phenopacket'])),'\n',
-)
+
+logger.info('get_gene_from_case.py\tNb phenopacket tot :\t{}'.format(len(all_pheno_list)))
+logger.info('get_gene_from_case.py\tNb phenopacket SOLVED GPAP :\t{}'.format(len(df_case_GPAP[df_case_GPAP['status'] == "SOLVED"].drop_duplicates())))
+logger.info('get_gene_from_case.py\tNb phenopacket UNSOLVED GPAP  :\t{}'.format(len(df_case_GPAP[df_case_GPAP['status'] == "UNSOLVED"].drop_duplicates())))
+logger.info('get_gene_from_case.py\tNb phenopacket UNKNOW GPAP :\t{}'.format(len(df_case_GPAP[df_case_GPAP['status'] == "UNKNOWN"].drop_duplicates())))
+logger.info('get_gene_from_case.py\tNb phenopacket UNKNOW + UNSOLVED GPAP :\t{}'.format((len(all_pheno_list)-len(df_case_GPAP[df_case_GPAP['status'] == "SOLVED"].drop_duplicates()))))
+logger.info('get_gene_from_case.py\tNb phenopacket SOLVED Orphanet based on SOLVED GPAP :\t{}'.format(len(df_case_solved_with_gene['phenopacket'].drop_duplicates())))
+logger.info('get_gene_from_case.py\tExcluding parent :\t{}'.format(len(df_case_solved_with_gene_no_parent['phenopacket'].drop_duplicates())))
+logger.info('get_gene_from_case.py\t1 HPO :\t{}'.format(len(set(df_final_1_hpo['phenopacket']))))
+logger.info('get_gene_from_case.py\t5 HPO :\t{}'.format(len(set(df_final_5_hpo['phenopacket']))))
+
 
 
 
@@ -204,9 +206,9 @@ json_files = os.listdir(PATH_OUPUT_5HPO_NOPARENT_AFTER_CURATION)
 try:
     # Remove element from list phenopacket
     json_files.remove('results')
-    print("get_gene_from_case.py\tElement\tRemoved ")
+    logger.info("get_gene_from_case.py\tElement\tRemoved ")
 except :
-    print("get_gene_from_case.py\tElement\tAlreadyRemoved ")
+    logger.info("get_gene_from_case.py\tElement\tAlreadyRemoved ")
 
 df_5HPO_gene_afterC = get_5HPO_gene_after_curation(json_files,PATH_OUPUT_5HPO_NOPARENT_AFTER_CURATION)
 
@@ -218,14 +220,16 @@ df_final_5_hpo_gene_afterC = df_final_5_hpo_gene_afterC.dropna()
 
 
 
-print(
-'get_gene_from_case.py\tAFTER CURATION Nb phenopacket 5HPO gene on json :\t',len(set(df_5HPO_gene_afterC['phenopacket'])),
-'\nget_gene_from_case.py\tAFTER CURATION Nb phenopacket 5HPO gene on json SOLVED case :\t',len(set(df_final_5_hpo_gene_afterC['phenopacket'])),'\n',
-)
+
+logger.info('get_gene_from_case.py\tAFTER CURATION Nb phenopacket 5HPO gene on json :\t{}'.format(len(set(df_5HPO_gene_afterC['phenopacket']))))
+logger.info('get_gene_from_case.py\tAFTER CURATION Nb phenopacket 5HPO gene on json SOLVED case :\t{}'.format(len(set(df_final_5_hpo_gene_afterC['phenopacket']))))
 
 
-print('get_gene_from_case.py\tExport df solved gene AND df json gene')
+
+logger.info('get_gene_from_case.py\tExport df solved gene AND df json gene')
 df_5HPO_gene_afterC.to_csv(PATH_OUTPUT_JSON_GENE,sep='\t',index=False)
 df_final_5_hpo_gene_afterC.to_csv(PATH_OUTPUT_SOLVED_GENE,sep='\t',index=False)
 
+
+logger.info("END\tget_gene_from_case.py\n ")
 
