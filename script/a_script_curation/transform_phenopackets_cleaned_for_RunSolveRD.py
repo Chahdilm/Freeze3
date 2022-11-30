@@ -1,12 +1,5 @@
 # -*- coding: utf-8 -*-
 """
-Created on Mon Dec  6 11:54:36 2021
-
-@author: ohongnat
-"""
-
-# -*- coding: utf-8 -*-
-"""
 Created on Thu Dec  2 15:59:07 2021
 
 @author: ohongnat,mchahdil
@@ -18,8 +11,8 @@ import os
 from SolveRD.script.path_variable import *
 
 import logging
-logging.basicConfig(level=logging.INFO,format='%(asctime)-10s:%(levelname)-20s:%(name)s:%(message)-20s')
-# logging.basicConfig(filename=PATH+'project.log',  level=logging.DEBUG,format='%(asctime)-10s:%(levelname)-20s:%(name)s:%(message)-20s')
+# logging.basicConfig(level=logging.INFO,format='%(asctime)-10s:%(levelname)-20s:%(name)s:%(message)-20s')
+logging.basicConfig(filename=PATH_INIT+'/project.log',  level=logging.DEBUG,format='%(asctime)-10s:%(levelname)-20s:%(name)s:%(message)-20s')
 
 logger = logging.getLogger()
 
@@ -30,9 +23,9 @@ all_pheno = os.listdir(PATH_OUPUT_5HPO_NOPARENT_AFTER_CURATION_tmp)
 try:
     # Remove element from list phenopacket
     all_pheno.remove('results')
-    logger.info("3_transform_phenopackets_cleaned_for_RunSolveRD.py\tElement\tRemoved ")
+    logger.info("transform_phenopackets_cleaned_for_RunSolveRD.py\tElement\tRemoved ")
 except :
-    logger.info("3_transform_phenopackets_cleaned_for_RunSolveRD.py\tElement\tAlreadyRemoved ")
+    logger.info("transform_phenopackets_cleaned_for_RunSolveRD.py\tElement\tAlreadyRemoved ")
 
 # Open all json files
 for filename in all_pheno :
@@ -73,7 +66,7 @@ for filename in all_pheno :
         jsonfileoutput.close()
         jsonfile.close()
 
-logger.info("3_transform_phenopackets_cleaned_for_RunSolveRD.py\tRe-structured all json files for algo")
+logger.info("transform_phenopackets_cleaned_for_RunSolveRD.py\tRe-structured all json files for algo")
 
 
 # rename all files (keep only the id
@@ -81,6 +74,6 @@ for onefile in all_pheno:
     onefile_strip = onefile.split('.')
     os.rename(PATH_OUPUT_5HPO_NOPARENT_AFTER_CURATION+onefile,PATH_OUPUT_5HPO_NOPARENT_AFTER_CURATION+onefile_strip[0]+str('.json'))
 
-logger.info("3_transform_phenopackets_cleaned_for_RunSolveRD.py\tRename json file")
+logger.info("transform_phenopackets_cleaned_for_RunSolveRD.py\tRename json file")
 logger.info("END\t3_transform_phenopackets_cleaned_for_RunSolveRD\n ")
 

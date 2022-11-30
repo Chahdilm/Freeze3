@@ -7,11 +7,12 @@ import subprocess
 from SolveRD.script.path_variable import *
 import logging
 
-# logging.basicConfig(filename=PATH+'project.log',  level=logging.DEBUG,format='%(asctime)-10s:%(levelname)-20s:%(name)s:%(message)-20s')
-logging.basicConfig(level=logging.INFO,format='%(asctime)-10s:%(levelname)-20s:%(name)s:%(message)-20s')
+
+logging.basicConfig(filename=PATH_INIT+'/project.log',  level=logging.DEBUG,format='%(asctime)-10s:%(levelname)-20s:%(name)s:%(message)-20s')
+# logging.basicConfig(level=logging.INFO,format='%(asctime)-10s:%(levelname)-20s:%(name)s:%(message)-20s')
 logger = logging.getLogger()
 
-logger.info("START\t1_filter_file_phenopacket.py\n ")
+logger.info("START\tfilter_file_phenopacket.py\n ")
 
 ##################################################################################################################################################################################
 # HPO
@@ -117,16 +118,16 @@ for onefile in json_files:
         all_pheno_list.append(onefile)
         # remove the date on the file name
         all_pheno_list_f.append(onefile.split('.')[0])
-logger.info("1_filter_file_phenopacket.py\tNumber of phenopacket available : \t{}".format(len(set(all_pheno_list))))
+logger.info("filter_file_phenopacket.py\tNumber of phenopacket available : \t{}".format(len(set(all_pheno_list))))
 
 
 try:
     # Remove element from list phenopacket
     all_pheno_list.remove('results')
-    logger.info("1_filter_file_phenopacket.py\tElement\tRemoved")
+    logger.info("filter_file_phenopacket.py\tElement\tRemoved")
 
 except :
-    logger.info("1_filter_file_phenopacket.py\tElement\tAlreadyRemoved")
+    logger.info("filter_file_phenopacket.py\tElement\tAlreadyRemoved")
 
 
 
@@ -143,9 +144,9 @@ for onep in all_pheno_list_f:
 
 # HPO tot phenopacket
 df_all_pheno_1_hpo_no_parent,df_all_pheno_5_hpo_no_parent = get_hpo_from_case(all_pheno_list,PATH_INPUT_PRODUCT_PHENOPACKET_BRUT,df_parent_interaction['PARENT_ID'].drop_duplicates().tolist())
-logger.info("1_filter_file_phenopacket.py\tNb phenopacket tot Excluding parent :\t{}".format(len(tot_no_parent)))
-logger.info("1_filter_file_phenopacket.py\tNb phenopacket tot 5 HPO :\t{}".format(len(set(df_all_pheno_5_hpo_no_parent['phenopacket']))))
-logger.info("1_filter_file_phenopacket.py\tNb phenopacket tot 1 HPO :\t{}".format(len(set(df_all_pheno_1_hpo_no_parent['phenopacket']))))
+logger.info("filter_file_phenopacket.py\tNb phenopacket tot Excluding parent :\t{}".format(len(tot_no_parent)))
+logger.info("filter_file_phenopacket.py\tNb phenopacket tot 5 HPO :\t{}".format(len(set(df_all_pheno_5_hpo_no_parent['phenopacket']))))
+logger.info("filter_file_phenopacket.py\tNb phenopacket tot 1 HPO :\t{}".format(len(set(df_all_pheno_1_hpo_no_parent['phenopacket']))))
 
 
 
@@ -164,15 +165,15 @@ for file_valid in list_valid:
     # # Linux command
     command = 'cp  ' + PATH_INPUT_PRODUCT_PHENOPACKET_BRUT+str(file_valid) +'  '+ PATH_OUPUT_5HPO_NOPARENT+str(file_valid)
     subprocess.run(command,shell=True)
-    logger.info("1_filter_file_phenopacket.py\tcopy phenopacket\t{}".format(file_valid))
+    logger.info("filter_file_phenopacket.py\tcopy phenopacket\t{}".format(file_valid))
 
 
-logger.info("1_filter_file_phenopacket.py\tDONE copy phenopacket keep only no parent 5HPO ")
+logger.info("filter_file_phenopacket.py\tDONE copy phenopacket keep only no parent 5HPO ")
 
 
 # # export tsv parent
 df_parent_interaction.to_csv(PATH_OUPUT_5HPO_NOPARENT_DF,sep='\t',index=False)
-logger.info("1_filter_file_phenopacket.py\tExport DF parent ")
+logger.info("filter_file_phenopacket.py\tExport DF parent ")
 
 logger.info("END\t1_filter_file_phenopacket\n ")
 
