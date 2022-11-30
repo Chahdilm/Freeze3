@@ -1,21 +1,13 @@
 import pandas as pd
 import json
 
+from SolveRD.script.path_variable import *
 
-import datetime
-from time import perf_counter
-
-from script.path_variable import *
-
-
-
-
-
-##############################################################################################################################
-print("###############\nSTART 5_stepC2.py\n###############\n")
-save_start_time =datetime.datetime.utcnow()
-
-print('\n####### STEP C2')
+import logging
+# logging.basicConfig(level=logging.INFO,format='%(asctime)-10s:%(levelname)-20s:%(name)s:%(message)-20s')
+logging.basicConfig(filename=PATH_INIT+'/project.log',  level=logging.DEBUG,format='%(asctime)-10s:%(levelname)-20s:%(name)s:%(message)-20s')
+logger = logging.getLogger()
+logger.info("START\tC2\n ")
 
 #################################################################
 ## INPUT TO BUILD THE DF
@@ -35,7 +27,7 @@ stepC1 = pd.read_csv(PATH_OUTPUT+r"stepC1.tsv", sep='\t')
 case_C1 =list( set(stepC1['case'].tolist()))
 #get all cases from C1 -> it's the input
 
-print("C2\tnumber of CO available  : ",len(case_C1))
+logger.info("C2\tnumber of CO available  :{} ".format(len(case_C1)))
 
 
 #################################################################
@@ -43,8 +35,7 @@ print("C2\tnumber of CO available  : ",len(case_C1))
 
 case_ORDO = list()
 
-# time start
-tstart = perf_counter()
+
 for COI in case_C1:
     # here for each C1 case we search the 50 closest orpha thanks to the algorithm
 
@@ -67,10 +58,10 @@ for COI in case_C1:
                 case_ORDO.append((split_jsonfile, key_results['itemid'], float(key_results['score']), key_results['rank']))
 
 
-# print("C2\tnumber of interactions :",  len(case_ORDO))
+# number of interactions len(case_ORDO
 df_case_ORDO = pd.DataFrame(case_ORDO, columns=["case", 'ORPHAcode_C2', 'score_C2', 'rank_C2'])
 
-# print('C2\tmerge all df step C2 and df_pd4_pd6_with_child')
+# merge all df step C2 and df_pd4_pd6_with_child'
 # select some cols and rename them
 minidf_pd4_pd6 = df_pd4_pd6_with_child[["ORPHAcode", "symbol", "ORPHAcode_child", "gene_child"]]
 minidf_pd4_pd6.columns = ["ORPHAcode_C2", "gene_orpha_C2", "ORPHAcode_child_C2", 'gene_child_C2']
@@ -91,9 +82,8 @@ df_C2 = df_C2.drop_duplicates()
 df_C2 = df_C2.drop(columns=['gene_C'])
 
 
-
+# only row and interactions of B2 did not put B1 score and previous B2 step info
 # df_C2.to_csv(PATH_OUTPUT+"stepC2_only.tsv", sep='\t',index=False)
-print("C2\tONLY C2 \tNB :  ", len(df_C2),"\tDONE")
 
 df_C2_all = pd.merge(stepC1, df_C2, on='case', how='outer')
 
@@ -102,18 +92,14 @@ df_C2_all = df_C2_all.drop_duplicates()
 df_C2_all = df_C2_all.dropna(subset=['case'])
 df_C2_all = df_C2_all.dropna(subset=['phenopacket'])
 
-print("C2\tEXPORT EACH STEP C2 all(merged with C1)\tNB :  ", len(df_C2_all),"\tDONE")
-print("C2\tONLY C2 \tNB :  ", len(df_C2),"\tDONE")
+logger.info("C2\tEXPORT EACH STEP C2 all(merged with C1)\tNB :  {}".format( len(df_C2_all)))
+logger.info("C2\tONLY C2 \tNB :  {}".format(len(df_C2)))
 
 df_C2_all.to_csv(PATH_OUTPUT+"stepC2.tsv", sep='\t',index=False)
 
-# time end
-tstop = perf_counter()    
-print("C2\tTIME build all df : ",(tstop - tstart))
 
 
-print("C2\tTIME END : ",datetime.datetime.utcnow())
-print('####### END C2\n')
+logger.info("END\tC2\n ")
 
 
 

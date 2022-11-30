@@ -6,7 +6,13 @@ import numpy as np
 
 import datetime
 from time import perf_counter
-from script.path_variable import *
+from SolveRD.script.path_variable import *
+
+import logging
+# logging.basicConfig(level=logging.INFO,format='%(asctime)-10s:%(levelname)-20s:%(name)s:%(message)-20s')
+logging.basicConfig(filename=PATH_INIT+'/project.log',  level=logging.DEBUG,format='%(asctime)-10s:%(levelname)-20s:%(name)s:%(message)-20s')
+logger = logging.getLogger()
+logger.info("START\tC1\n ")
 
 def read_osfiles(path):
     """  store files names in a list"""
@@ -23,12 +29,6 @@ def read_osfiles(path):
 ##############################################################################################################################
 
 
-print("###############\nSTART 4_stepC1.py\n###############\n")
-save_start_time =datetime.datetime.utcnow()
-
-print('\n####### STEP C1')
-
-#################################################################
 
 #### ORPHA gene
 # df_pd4_pd6_with_child contains the product 4 and 6 which have HPO, Orphacode and genes orphacode information
@@ -43,7 +43,7 @@ df_cases_gene_excels = df_cases_gene_excels.drop(columns=['filename', 'nb_hpo'])
 
 # get all phenopacket json name
 namefile_CC = read_osfiles(PATH_OUTPUT_RSLT_ALGO_ORPHA)
-print("C1\tnumber of CO available : ",len(namefile_CC))
+logger.info("C1\tnumber of CO available : {} ".format(len(namefile_CC)))
 
 
 #################################################################
@@ -54,12 +54,10 @@ stepA1_all = pd.read_csv(PATH_OUTPUT+r"stepA1.tsv", sep='\t')
 # input of C1 are the case from A1
 listephenoJS= list(set(list(stepA1_all['phenopacket'])))
 
-print("C1\tnb cases in the netwok based on A1 : ",len(listephenoJS))
+logger.info("C1\tnb cases in the netwok based on A1 : {}".format(len(listephenoJS)))
 
 #################################################################
 
-# time start
-tstart = perf_counter()
 
 case_ORDO_fromA1 = set()
 
@@ -132,14 +130,10 @@ df_stepC1 = df_stepC1.dropna(subset=['score_A1','score_C1'])
 df_stepC1 = df_stepC1.drop_duplicates()
 
 df_stepC1.to_csv(PATH_OUTPUT+"stepC1.tsv", sep='\t',index=False)
-print("C1\tEXPORT ALL C1 \t",len(df_stepC1))
+logger.info("C1\tEXPORT ALL C1 \t{}".format(len(df_stepC1)))
 
 
 
-# time end
-tstop = perf_counter()    
-print("C1\tTIME build all df : ",(tstop - tstart))
 
-print("C1\tTIME END : ",datetime.datetime.utcnow())
+logger.info("END\tC1\n ")
 
-print("###############\nEND 4_stepC1.py\n###############\n")

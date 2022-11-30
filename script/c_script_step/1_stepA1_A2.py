@@ -1,14 +1,14 @@
 import pandas as pd
 import json
-import datetime
+import os
 
-from script.path_variable import *
+from SolveRD.script.path_variable import *
+import logging
+# logging.basicConfig(level=logging.INFO,format='%(asctime)-10s:%(levelname)-20s:%(name)s:%(message)-20s')
+logging.basicConfig(filename=PATH_INIT+'/project.log',  level=logging.DEBUG,format='%(asctime)-10s:%(levelname)-20s:%(name)s:%(message)-20s')
+logger = logging.getLogger()
 
-
-##############################################################################################################################
-
-print("###############\nSTART 1_stepA1_A2.py\n###############\n")
-save_start_time =datetime.datetime.utcnow()
+logger.info("START\tA1_A2\n ")
 
 #################################################################
 
@@ -20,19 +20,22 @@ df_excels = df_excels.drop(columns=['filename', 'nb_hpo'])
 # input solved case
 namefile_CO = list(set(df_excels['phenopacket']))
 namefile_CO = [i+'.json.json' for i in namefile_CO]
-print("number of CO available : ",len(namefile_CO))
+logger.info("A1_A2\tnumber of CO available : {}".format(len(namefile_CO)))
 
-print('\n####### STEP A2')
+logger.info('A2')
 
-
-
+# intersection between list from solved case with gene and results from algo
+resultjsonjson = os.listdir(PATH_OUTPUT_RSLT_ALGO_ORPHA)
+match_jsonresult = set(namefile_CO).intersection(set(resultjsonjson))
+match_jsonresult = list(match_jsonresult)
 # a set var to store orpha:script and phenopacket name this will be use to create the graph
 case_ORPHA = list()
 i = 0
-while i <len(namefile_CO):
+
+while i <len(match_jsonresult):
     # open one phenopact result per loop 
-    with open(PATH_OUTPUT_RSLT_ALGO_ORPHA+str(namefile_CO[i])) as file_phenopacket_result:
-        one_phenopacket_result = json.load(file_phenopacket_result)
+    with open(PATH_OUTPUT_RSLT_ALGO_ORPHA+str(match_jsonresult[i]),'r',encoding = 'utf8') as file_phenopacket_result:
+        one_phenopacket_result = json.load(file_phenopacket_result,encoding = 'utf8')
 
     # select only the result from a specific algo (these is 8 algo)
     for key_method in one_phenopacket_result['methods']:
@@ -43,7 +46,7 @@ while i <len(namefile_CO):
             for key_results in key_method['results']:
 
                 # split part from 'P0000037.json.json' to 'P0000037,
-                split_jsonfile = namefile_CO[i].split('.')
+                split_jsonfile = match_jsonresult[i].split('.')
                 split_jsonfile = split_jsonfile[0]
                 # ,key_results['itemid'] contain orpha:script, ,key_results['score'] contain score and so on
                 case_ORPHA.append((split_jsonfile,key_results['itemid'],float(key_results['score']),key_results['rank']))
@@ -51,7 +54,7 @@ while i <len(namefile_CO):
 
 # convert the set of tuples into a dataframe 
 df_case_ORPHA = pd.DataFrame(case_ORPHA, columns=["phenopacket",'ORPHAcode','score','rank'])
-print("A2\tTIME : BUILD the df : ",datetime.datetime.utcnow())
+logger.info("A2\tBUILD the df ")
 
 # add genes related to case
 df_add_gene_case = pd.merge(df_case_ORPHA, df_excels, on='phenopacket',how='outer')
@@ -68,24 +71,23 @@ df_stepA = df_stepA[(~df_stepA['symbol'].isnull()) | (~df_stepA['gene_child'].is
 df_stepA.columns = ['phenopacket','ORPHAcode','score','rank','gene_P','symbol','ORPHAcode_child','gene_child']
 
 
-print("A2\tTIME : ADD genes : ",datetime.datetime.utcnow())
+logger.info("A2\tADD genes ")
 
-df_stepA.to_csv(PATH_OUTPUT+r"stepA2.tsv", sep='\t',index=False)
+df_stepA.to_csv(PATH_OUTPUT+"stepA2.tsv", sep='\t',index=False)
 
-print("A2\tEXPORT DF OUTPUT : contain all stepA2 interactions\t",len(df_stepA),"\nA2\tTIME : ",datetime.datetime.utcnow())
-
-
+logger.info("A2\tEXPORT DF OUTPUT : contain all stepA2 interactions\t{}".format(len(df_stepA)))
 
 
-print('####### END A2\n')
-print("A2\tTIME END : ",datetime.datetime.utcnow())
+
+
+logger.info("A2\tEND ")
 
 
 ########################################################## 
 # A1  A1  A1  A1  A1  A1  A1  A1  A1  A1  A1  A1  A1  A1
 ##########################################################
 
-print('\n####### STEP A1')
+logger.info('A1')
 
 # we rebuild the dataframe base on pd6 and pd_child
 # we remove line where orphacode parent AND child have genes
@@ -134,7 +136,9 @@ stepA1_all = stepA1_all.dropna(subset=['symbol','gene_P'])
 stepA1_all.to_csv(PATH_OUTPUT+r"stepA1.tsv", sep='\t',index=False)
 # stepA1_all['phenopacket'].to_csv(PATH_OUTPUT+"nb_case_A1.tsv", sep='\t',index=False)
 
-print("A1\tEXPORT DF OUTPUT : contain all stepA1 interactions\t",len(stepA1_all),"\nA1\tTIME : ",datetime.datetime.utcnow())
+logger.info("A1\tEXPORT DF OUTPUT : contain all stepA1 interactions\t{}".format(len(stepA1_all)))
 
+logger.info("A1\tEND ")
 
-print("###############\nEND 1_stepA1_A2.py\n###############\n")
+logger.info("END\tA1_A2\n ")
+
