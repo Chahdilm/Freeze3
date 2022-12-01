@@ -55,8 +55,8 @@ install.packages("ontologyIndex")
   -   shell script *workflow_docker.sh*.
       -   Change the path on lines 6;53;57;58
       -   Exemple :      
-            **/mnt/c/Users/mchahdil/Desktop/**SolveRD/output_files/log/docker_logs.log 
-            **change the section in bold** don't change the other section on the right
+          -   **/mnt/c/Users/mchahdil/Desktop/**SolveRD/output_files/log/docker_logs.log 
+          -   **change the section in bold** don't change the other section on the right
 
 
  
