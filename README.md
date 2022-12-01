@@ -71,16 +71,16 @@ install.packages("ontologyIndex")
   -   docker pull 
     - it contains the docker folder and the SolveRD folder
       - docker folder :
-          - SolveRD                               \t\tempty folder need for the symbolic link
-          - docker-compose.yml                    \t\tdocker-compose file with all images needed
-          - Dockerfile                            \t\tDockerfile for the python part dockerfile is connected to docker-compose file
-          - requirements.r                        \t\tr libraries
-          - requirements.txt                      \t\tpython librairies
-          - workflow_docker.sh                    \t\tshell script with all command to load scripts 
-                                                  \t\tThe command to run the shell : sh workflow_docker sh 
+          - SolveRD                               \t empty folder need for the symbolic link
+          - docker-compose.yml                    \t docker-compose file with all images needed
+          - Dockerfile                            \t Dockerfile for the python part dockerfile is connected to docker-compose file
+          - requirements.r                        \t r libraries
+          - requirements.txt                      \t python librairies
+          - workflow_docker.sh                    \t shell script with all command to load scripts 
+                                                  \t The command to run the shell : sh workflow_docker sh 
       - SolveRD folder :
-          - bin                                   \t\t contain all scripts in python,R and java this will be explain later
-          - input_files                           \t\t input f
+          - bin                                   \t contain all scripts in python,R and java this will be explain later
+          - input_files                           \t input f
               - gpap_variants_files
               - hpo_files
               - orphanet_files
