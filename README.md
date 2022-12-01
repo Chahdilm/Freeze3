@@ -58,10 +58,37 @@ install.packages("ontologyIndex")
           -   **/mnt/c/Users/mchahdil/Desktop/**SolveRD/output_files/log/docker_logs.log 
           -   **change the section in bold** don't change the other section on the right
 
+  -   docker compose  file *docker-compose.yml*.
+      -   Change the path on lines 8;17
+      -   Exemple :      
+          -   **/mnt/c/Users/mchahdil/Desktop**/SolveRD:/SolveRD 
+          -   **change the section in bold** 
+
 
  
  
 # Getting started :
+  -   docker pull 
+    - it contains the docker folder and the SolveRD folder
+    - docker folder :
+              SolveRD                               empty folder need for the symbolic link
+              docker-compose.yml                    docker-compose file with all images needed
+              Dockerfile                            Dockerfile for the python part dockerfile is connected to docker-compose file
+              requirements.r                        r libraries
+              requirements.txt                      python librairies
+              workflow_docker.sh                    shell script with all command to load scripts 
+                                                    The command to run the shell : sh workflow_docker sh 
+    - SolveRD folder :
+              bin                                    empty folder need for the symbolic link
+              input_files                    
+     --> on the SolvedRD an output_files will be created with all output files  created by the workflow.
+     
+ 
+  -   The folder is called Freeze3 and contains the folders input (all the input files needed for the process), protocol curation (documentation) and script (containing the pyhton code).
+  -   Go to the file named *a_script_curation/curation_excluding_redundant_terms_with_ontologyIndex.R* and change the path.
+  -   Go to the file named *path_variable.py* and change the variable **PATH** put the actual path where the folder Freeze3 is.
+## filee needed 
+## files to ddl aka produit et tt 
   -   Extract the project on docker [command ]  **WIP**
   -   Download the zip folder.
   -   The folder is called Freeze3 and contains the folders input (all the input files needed for the process), protocol curation (documentation) and script (containing the pyhton code).
