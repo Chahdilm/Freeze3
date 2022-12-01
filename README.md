@@ -8,7 +8,6 @@ The service is coded in order to viasualise phenotypic similatiry network throug
 This is a portal for phenotipic similarity analysis, it will be deploy for clinicians and guide to diagnostics hypothesis.
 
 Data are generated with python, visualization is done with JS with cytoscape JS. 
-The data file formats are: tsv, json, xlsx, txt and so on.
 
 
 ## SolveRD projet
@@ -29,7 +28,10 @@ Solve rd project aim to helped through diagnostics hypothesis on unsolved patien
 ## Python
   Install libraries on the python console : use conda or pip or pip3
 ```
-pandas 
+pandas==1.3.4
+numpy==1.21.3
+openpyxl==3.0.9
+
 os 
 json
 subprocess
@@ -37,44 +39,26 @@ datetime
 time
 multiprocessing
 threading
-numpy
-py4cytoscape
 sys
 ```
 ## R
    Install libraries on R console :
 ```
-install.packages("tidyverse")
-install.packages("rlist")
 install.packages("data.table")
 install.packages("dplyr")
-install.packages("XML")
-install.packages("methods")
-install.packages("xlsx")
 install.packages("jsonlite")
-install.packages("writexl")
 install.packages("ontologyIndex")
 ```
 
 
 # /!\ Code to change  /!\
-  -   R script *curation_excluding_redundant_terms_with_ontologyIndex.R*.
-      -   Change the path of the variable : **folder**.
-```
-folder = "C:\\Users\\username\\...\\Freeze3\\output_5HPO\\curation_input\\"
-setwd(folder)
-
-input_json = "Freezes1_2_3_noduplicates_noparents_with_5phenotypes_complete\\"
-output_json = "Freezes1_2_3_noduplicates_noparents_with_5phenotypes_aftercuration_complete\\"
-```
-
-  -   Python script *path_variable.py*.
-      -   Change the path of the variable **PATH**. 
-            -   PATH describes the location of the main file named Freeze3. All variables that store paths depend on the PATH variable.
-            -   Exemple :
-                  ```
-                  PATH= r"C:\Users\username\Documents\Freeze3\\"
-                  ```
+  -   shell script *workflow_docker.sh*.
+      -   Change the path on lines 6;53;57;58
+      -   Exemple :      
+            ```
+            **/mnt/c/Users/mchahdil/Desktop/**SolveRD/output_files/log/docker_logs.log 
+            **change the section in bold** don't change the other section on the right
+            ```
       -   Change the path of the variable **PATH_R**. 
             -   PATH_R indicates where R is stored on the computer. It is necessary to modify it depending on the location of R and the OS use (window,linux or mac).
             -   Exemple : 
