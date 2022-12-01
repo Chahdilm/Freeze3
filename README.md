@@ -55,23 +55,9 @@ install.packages("ontologyIndex")
   -   shell script *workflow_docker.sh*.
       -   Change the path on lines 6;53;57;58
       -   Exemple :      
-            ```
             **/mnt/c/Users/mchahdil/Desktop/**SolveRD/output_files/log/docker_logs.log 
             **change the section in bold** don't change the other section on the right
-            ```
-      -   Change the path of the variable **PATH_R**. 
-            -   PATH_R indicates where R is stored on the computer. It is necessary to modify it depending on the location of R and the OS use (window,linux or mac).
-            -   Exemple : 
-                  ```
-                  PATH_R= r"C:\Program Files\R\R-4.2.1\bin\Rscript"
-                  ```
-                  
-  - Python script *main.py*
-      -   If needed uncomment the list.remove('__init__.py') part for all list. Sometime __init__.py is included on the list thus it should be removed, if it's not into the list to need to change the code.
-           -   Exemple : 
-                  ```
-                  # files_all_step.remove('__init__.py') # uncomment if needed
-                  ```  
+
 
  
  
