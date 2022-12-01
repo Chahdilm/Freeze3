@@ -70,18 +70,18 @@ install.packages("ontologyIndex")
 # Getting started :
   -   docker pull 
     - it contains the docker folder and the SolveRD folder
-    - docker folder :
-              SolveRD                               empty folder need for the symbolic link
-              docker-compose.yml                    docker-compose file with all images needed
-              Dockerfile                            Dockerfile for the python part dockerfile is connected to docker-compose file
-              requirements.r                        r libraries
-              requirements.txt                      python librairies
-              workflow_docker.sh                    shell script with all command to load scripts 
+      - docker folder :
+          - SolveRD                               empty folder need for the symbolic link
+          - docker-compose.yml                    docker-compose file with all images needed
+          - Dockerfile                            Dockerfile for the python part dockerfile is connected to docker-compose file
+          - requirements.r                        r libraries
+          - requirements.txt                      python librairies
+          - workflow_docker.sh                    shell script with all command to load scripts 
                                                     The command to run the shell : sh workflow_docker sh 
-    - SolveRD folder :
-              bin                                    empty folder need for the symbolic link
-              input_files                    
-     --> on the SolvedRD an output_files will be created with all output files  created by the workflow.
+      - SolveRD folder :
+          - bin                                    empty folder need for the symbolic link
+          - input_files                    
+          --> on the SolvedRD an output_files will be created with all output files  created by the workflow.
      
  
   -   The folder is called Freeze3 and contains the folders input (all the input files needed for the process), protocol curation (documentation) and script (containing the pyhton code).
