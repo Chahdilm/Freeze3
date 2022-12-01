@@ -71,16 +71,23 @@ install.packages("ontologyIndex")
   -   docker pull 
     - it contains the docker folder and the SolveRD folder
       - docker folder :
-          - SolveRD                               empty folder need for the symbolic link
-          - docker-compose.yml                    docker-compose file with all images needed
-          - Dockerfile                            Dockerfile for the python part dockerfile is connected to docker-compose file
-          - requirements.r                        r libraries
-          - requirements.txt                      python librairies
-          - workflow_docker.sh                    shell script with all command to load scripts 
-                                                    The command to run the shell : sh workflow_docker sh 
+          - SolveRD                               \t\tempty folder need for the symbolic link
+          - docker-compose.yml                    \t\tdocker-compose file with all images needed
+          - Dockerfile                            \t\tDockerfile for the python part dockerfile is connected to docker-compose file
+          - requirements.r                        \t\tr libraries
+          - requirements.txt                      \t\tpython librairies
+          - workflow_docker.sh                    \t\tshell script with all command to load scripts 
+                                                  \t\tThe command to run the shell : sh workflow_docker sh 
       - SolveRD folder :
-          - bin                                    empty folder need for the symbolic link
-          - input_files                    
+          - bin                                   \t\t contain all scripts in python,R and java this will be explain later
+          - input_files                           \t\t input f
+              - gpap_variants_files
+              - hpo_files
+              - orphanet_files
+              - ped_files
+              - phenopackets_input_files
+              - wikipathways_files
+              - 2022_10_14_cohort_ERN.csv
           --> on the SolvedRD an output_files will be created with all output files  created by the workflow.
      
  
